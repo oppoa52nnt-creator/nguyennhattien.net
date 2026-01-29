@@ -1,34 +1,82 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DỊCH VỤ TUT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body {
-            background: linear-gradient(135deg, #1a0033 0%, #4b0082 100%);
-            color: white;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            height: 100vh; margin: 0;
-        }
-        .container {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 30px; border-radius: 20px;
-            backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2);
-            text-align: center; width: 300px;
-        }
-        .button {
-            background: #8a2be2; color: white; padding: 10px 20px;
-            margin: 10px 0; border-radius: 10px; text-decoration: none;
-            display: block; transition: 0.3s;
-        }
-        .button:hover { background: #9400d3; transform: scale(1.05); }
+        body { background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); min-height: 100vh; font-family: sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .price-card { transition: 0.3s; border-left: 4px solid #a855f7; }
+        .price-card:hover { background: rgba(168, 85, 247, 0.1); transform: translateX(5px); }
     </style>
 </head>
-<body>
-    <div class="container">
-        <h1>MY HUB</h1>
-        <p>Quản lý Executor Chuyên Nghiệp</p>
-        <a href="#" class="button">Get Script</a>
-        <a href="#" class="button">Join Discord</a>
+<body class="p-5 text-white">
+    <div class="max-w-2xl mx-auto">
+        <div class="text-center mb-10">
+            <h1 class="text-4xl font-extrabold bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent uppercase tracking-widest">
+                DỊCH VỤ TUT
+            </h1>
+            <p class="text-gray-400 mt-2">Cung cấp tài nguyên & thủ thuật MMO chuyên nghiệp</p>
+        </div>
+
+        <div class="space-y-4">
+            <h2 class="text-purple-400 font-bold border-b border-purple-500/30 pb-2">THỦ THUẬT FACEBOOK & MXH</h2>
+            
+            <div class="glass p-4 rounded-xl price-card flex justify-between items-center">
+                <span>TUT gỡ SĐT dùng chung FB</span>
+                <span class="font-bold text-yellow-400">70k</span>
+            </div>
+            <div class="glass p-4 rounded-xl price-card flex justify-between items-center">
+                <span>TUT Add Email/SĐT vào FB</span>
+                <span class="font-bold text-yellow-400">70k</span>
+            </div>
+            <div class="glass p-4 rounded-xl price-card flex justify-between items-center">
+                <span>Mẹo đá kick all thiết bị FB</span>
+                <span class="font-bold text-yellow-400">70k</span>
+            </div>
+            <div class="bg-purple-600/20 p-4 rounded-xl border border-purple-500 flex justify-between items-center">
+                <span class="font-bold text-purple-300">COMBO 4 TUT TRÊN + VIDEO</span>
+                <span class="font-bold text-green-400 text-xl">200k</span>
+            </div>
+            <div class="glass p-4 rounded-xl price-card flex justify-between items-center">
+                <span>TUT spam kết bạn không giới hạn</span>
+                <span class="font-bold text-yellow-400">50k</span>
+            </div>
+            <div class="glass p-4 rounded-xl price-card flex justify-between items-center">
+                <span>TUT lên Locket 15s (No VPN)</span>
+                <span class="font-bold text-yellow-400">40k</span>
+            </div>
+
+            <h2 class="text-purple-400 font-bold border-b border-purple-500/30 pb-2 pt-6">DỊCH VỤ KHÁC</h2>
+            <div class="glass p-4 rounded-xl price-card flex justify-between items-center">
+                <span>Lên Tích xanh theo tên</span>
+                <span class="font-bold text-yellow-400">400k</span>
+            </div>
+            <div class="glass p-4 rounded-xl price-card flex justify-between items-center">
+                <span>Bán Chat GPT Plus (1 tháng)</span>
+                <span class="font-bold text-yellow-400">45k</span>
+            </div>
+            <div class="glass p-4 rounded-xl price-card flex justify-between items-center">
+                <span>Fake Bill chuyên nghiệp</span>
+                <span class="font-bold text-yellow-400">10k</span>
+            </div>
+        </div>
+
+        <div class="mt-12 space-y-4 text-center">
+            <p class="text-sm text-gray-400 uppercase tracking-tighter italic">Vui lòng nhắn tin để được hỗ trợ nhanh nhất</p>
+            <div class="flex gap-4">
+                <a href="https://zalo.me/0966181924" target="_blank" class="flex-1 py-4 bg-blue-600 hover:bg-blue-700 rounded-2xl font-bold shadow-lg transition-all transform hover:scale-105 text-center">
+                    LIÊN HỆ ZALO
+                </a>
+                <a href="https://t.me/ntienz8386" target="_blank" class="flex-1 py-4 bg-sky-500 hover:bg-sky-600 rounded-2xl font-bold shadow-lg transition-all transform hover:scale-105 text-center">
+                    TELEGRAM
+                </a>
+            </div>
+        </div>
+
+        <p class="mt-10 mb-5 text-center text-xs text-gray-600 italic">Hệ thống tự động cập nhật bảng giá 2026</p>
     </div>
 </body>
 </html>
