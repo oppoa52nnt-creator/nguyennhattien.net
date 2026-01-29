@@ -3,18 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DỊCH VỤ TUT - NGUYỄN NHẬT TIẾN</title>
+    <title>DỊCH VỤ TUT & TƯƠNG TÁC</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); min-height: 100vh; font-family: sans-serif; }
-        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .card-item { transition: 0.3s; border-left: 3px solid #a855f7; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; padding: 1rem; border-radius: 0.75rem; }
-        .card-item:hover { background: rgba(168, 85, 247, 0.15); transform: translateX(8px); }
-        .category-title { color: #d8b4fe; font-weight: 800; letter-spacing: 1px; border-bottom: 1px solid rgba(168, 85, 247, 0.3); padding-bottom: 5px; margin-top: 25px; margin-bottom: 15px; text-transform: uppercase; font-size: 0.8rem; }
+        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .price-card { transition: 0.2s; border-left: 3px solid #a855f7; display: flex; justify-content: space-between; align-items: center; padding: 12px; border-radius: 12px; margin-bottom: 8px; }
+        .price-card:hover { background: rgba(168, 85, 247, 0.15); transform: translateX(5px); }
+        .category-title { color: #a855f7; font-weight: bold; border-bottom: 1px solid rgba(168, 85, 247, 0.3); padding-bottom: 5px; margin-top: 25px; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
+        .price-tag { color: #facc15; font-weight: bold; }
+    </div>
     </style>
 </head>
-<body class="p-4 sm:p-8 text-white">
+<body class="p-5 text-white">
     <div class="max-w-2xl mx-auto">
-        <div class="text-center mb-8">
-            <h1 class="text-4xl font-black bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent italic">DỊCH VỤ TUT</h1>
-            <p class="text-gray-400 mt-2 text-xs uppercase tracking-widest">NGUYỄN NH
+        <div class="text-center mb-10">
+            <h1 class="text-4xl font-extrabold bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent tracking-widest uppercase">DỊCH VỤ TUT</h1>
+        </div>
+
+        <div class="category-title">Thủ Thuật & Dịch Vụ Facebook</div>
+        <div class="glass price-card"><span>TUT gỡ SĐT dùng chung FB</span><span class="price-tag">70k</span></div>
+        <div class="glass price-card"><span>TUT Add Email/SĐT vào FB</span><span class="price-tag">70k</span></div>
+        <div class="glass price-card"><span>Mẹo đá kick all thiết bị FB</span><span class="price-tag">70k</span></div>
+        <div class="bg-purple-600/20 p-4 rounded-xl border border-purple-500 flex justify-between items-center mb-2">
+            <span class="font-bold">COMBO 4 TUT + VIDEO</span><span class="price-tag text-xl">200k</span>
+        </div>
+        <div class="glass price-card"><span>Lên Tích xanh theo tên</span><span class="price-tag">400k</span></div>
+        <div class="glass price-card"><span>TUT Zalo lên Business</span><span class="price-tag">100k</span></div>
+
+        <div class="text-center my-10">
+            <h1 class="text-4xl font-extrabold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent tracking-widest uppercase">TĂNG TƯƠNG TÁC</h1>
+        </div>
+
+        <div class="category-title">Facebook (Mỗi 1000 đơn vị)</div>
+        <div class="glass price-card"><span>Theo dõi (Follow) Facebook</span><span class="price-tag">5.000đ</span></div>
+        <div class="glass price-card"><span>Cảm xúc Việt</span><span class="price-tag">9.000đ</span></div>
+        <div class="glass price-card"><span>View Story</span><span class="price-tag">6.000đ</span></div>
+        <div class="glass price-card"><span>Thành viên nhóm</span><span class="price-tag">20.000đ</span></div>
+
+        <div class="category-title">TikTok</div>
+        <div class="glass price-card"><span>2000 View</span><span class="price-tag">1.000đ</span></div>
+        <div class="glass price-card"><span>1000 Tim ảo (Nhanh tụt)</span><span class="price-tag">2.000đ</span></div>
+        <div class="glass price-card"><span>1000 Follow Việt (Ổn định)</span><span class="price-tag">20.000đ</span></div>
+        <div class="glass price-card"><span>1000 Follow Tây (Bảo hành 20 ngày)</span><span class="price-tag">50.000đ</span></div>
+
+        <div class="category-title">Instagram & Youtube</div>
+        <div class="glass price-card"><span>1000 Follow Instagram (Tỉ lệ tụt thấp)</span><span class="price-tag">30.000đ</span></div>
+        <div class="glass price-card"><span>1000 View Youtube (Short/Dài)</span><span class="price-tag">35.000đ</span></div>
+
+        <div class="category-title">Khác</div>
+        <div class="glass price-card"><span>1000 Follow Threads</span><span class="price-tag">100.000đ</span></div>
+        <div class="glass price-card"><span>1 Đánh giá 5 sao Google Map</span><span class="price-tag">20.000đ</span></div>
+
+        <div class="mt-12 space-y-4">
+            <div class="flex gap-4">
+                <a href="https://zalo.me/0966181924" target="_blank" class="flex-1 py-4 bg-blue-600 rounded-2xl font-bold text-center transform hover:scale-105 transition-all">LIÊN HỆ ZALO</a>
+                <a href="https://t.me/ntienz8386" target="_blank" class="flex-1 py-4 bg-sky-500 rounded-2xl font-bold text-center transform hover:scale-105 transition-all">TELEGRAM</a>
+            </div>
+        </div>
+        <p class="text-center text-xs text-gray-600 my-10 italic">© 2026 Designed by Nguyen Nhat Tien</p>
+    </div>
+</body>
+</html>
