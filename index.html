@@ -1,17 +1,43 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NGUYỄN NHẬT TIẾN</title>
+    <meta property="og:title" content="NGUYỄN NHẬT TIẾN">
+    <meta property="og:description" content="Cung cấp tài nguyên & Dịch vụ MMO chuyên nghiệp">
+<style>
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    html { scroll-behavior: smooth; }
+    .menu-btn { whitespace-nowrap; px-4; py-2; bg-purple-600/30; border; border-purple-500/50; border-radius: 9999px; font-size: 11px; font-weight: bold; color: white; flex-shrink: 0; }
+</style>
     <script src="https://cdn.tailwindcss.com"></script>
-    #notification { position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%); background: #a855f7; color: white; padding: 12px 25px; border-radius: 50px; font-size: 13px; font-weight: bold; z-index: 10000; display: none; box-shadow: 0 4px 20px rgba(0,0,0,0.5); text-align: center; width: 85%; }
-        .scroll-hint { text-align: center; color: #facc15; font-size: 12px; font-weight: bold; margin: 20px 0; animation: bounce 2s infinite; }
-        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-8px);} 60% {transform: translateY(-4px);} }
-        .sticky-footer { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(15, 12, 41, 0.95); backdrop-filter: blur(10px); border-top: 1px solid rgba(168, 85, 247, 0.4); padding: 10px; display: flex; gap: 8px; z-index: 9999; }
-        .footer-btn { flex: 1; height: 45px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px; color: white; text-decoration: none; }
-        .main-container { padding-bottom: 100px; } /* Để không bị footer che dịch vụ cuối */
     <style>
+        body { background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); min-height: 100vh; font-family: sans-serif; color: white; display: flex; justify-content: center; align-items: flex-start; padding: 40px 20px; }
+        .main-container { width: 100%; max-width: 450px; } 
+        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 12px 18px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; transition: 0.3s; font-size: 14px; }
+        .glass:hover { background: rgba(168, 85, 247, 0.1); transform: translateX(5px); }
+        .price { color: #facc15; font-weight: bold; font-size: 13px; }
+        details summary { list-style: none; cursor: pointer; background: rgba(168, 85, 247, 0.2); padding: 15px; border-radius: 12px; font-weight: bold; text-transform: uppercase; border: 1px solid rgba(168, 85, 247, 0.4); margin-top: 15px; display: flex; justify-content: space-between; align-items: center; transition: 0.3s; font-size: 13px; }
+        details summary:hover { background: rgba(168, 85, 247, 0.4); }
+        details[open] summary { border-bottom-left-radius: 0; border-bottom-right-radius: 0; background: #a855f7; }
+        .content { border: 1px solid rgba(168, 85, 247, 0.4); border-top: none; padding: 10px; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; background: rgba(255, 255, 255, 0.02); }
+        .sub-cat { font-size: 10px; color: #a855f7; font-weight: bold; margin: 15px 0 8px 8px; letter-spacing: 1px; }
+        .contact-group { display: flex; gap: 8px; margin-top: 15px; }
+        .btn-sm { flex: 1; py: 3; border-radius: 10px; font-weight: bold; font-size: 10px; text-align: center; display: flex; align-items: center; justify-content: center; gap: 3px; height: 40px; }
+    #notification { 
+    position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); 
+    background: #a855f7; color: white; padding: 12px 25px; border-radius: 50px; 
+    font-size: 13px; font-weight: bold; box-shadow: 0 4px 20px rgba(168, 85, 247, 0.4); 
+    z-index: 9999; display: none; animation: fadeInUp 0.3s ease; 
+    border: 1px solid rgba(255,255,255,0.3); text-align: center; width: 85%; max-width: 400px; 
+}
+@keyframes fadeInUp { 
+    from { opacity: 0; transform: translate(-50%, 20px); } 
+    to { opacity: 1; transform: translate(-50%, 0); } 
+}</style>
 </head>
 <body>
     <div class="main-container">
@@ -317,24 +343,22 @@
         </div>
     </div>
 <div id="notification">Tất cả các dịch vụ nhắn Zalo admin để chạy tay và lên đơn</div>
-<script>
-<div id="notification">Tất cả các dịch vụ nhắn Zalo admin để chạy tay và lên đơn</div>
-    
-    <div class="sticky-footer">
-        <a href="https://zalo.me/0966181924" class="footer-btn bg-blue-600">💬 Zalo</a>
-        <a href="https://t.me/ntienz8386" class="footer-btn bg-sky-500">✈️ Tele</a>
-        <a href="https://www.facebook.com/ntien210" class="footer-btn bg-blue-800">📘 FB</a>
-    </div>
 
-    <script>
-        // Tự động gắn thông báo cho tất cả dịch vụ đang có
-        document.querySelectorAll('.glass').forEach(item => {
-            item.onclick = function() {
-                const note = document.getElementById("notification");
-                note.style.display = "block";
-                setTimeout(() => { note.style.display = "none"; }, 3000);
-            };
-        });
-    </script>
-    </body>
+<script>
+    // 1. Hàm hiện thông báo
+    function showNote() {
+        var note = document.getElementById("notification");
+        note.style.display = "block";
+        setTimeout(function(){ 
+            note.style.display = "none"; 
+        }, 3000);
+    }
+
+    // 2. Tự động gắn lệnh cho TẤT CẢ các dịch vụ (class glass)
+    document.querySelectorAll('.glass').forEach(function(item) {
+        item.addEventListener('click', showNote);
+    });
+</script>
+<script>
+</body>
 </html>
