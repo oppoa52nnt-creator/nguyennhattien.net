@@ -21,7 +21,17 @@
         .sub-cat { font-size: 10px; color: #a855f7; font-weight: bold; margin: 15px 0 8px 8px; letter-spacing: 1px; }
         .contact-group { display: flex; gap: 8px; margin-top: 15px; }
         .btn-sm { flex: 1; py: 3; border-radius: 10px; font-weight: bold; font-size: 10px; text-align: center; display: flex; align-items: center; justify-content: center; gap: 3px; height: 40px; }
-    </style>
+    #notification { 
+    position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); 
+    background: #a855f7; color: white; padding: 12px 25px; border-radius: 50px; 
+    font-size: 13px; font-weight: bold; box-shadow: 0 4px 20px rgba(168, 85, 247, 0.4); 
+    z-index: 9999; display: none; animation: fadeInUp 0.3s ease; 
+    border: 1px solid rgba(255,255,255,0.3); text-align: center; width: 85%; max-width: 400px; 
+}
+@keyframes fadeInUp { 
+    from { opacity: 0; transform: translate(-50%, 20px); } 
+    to { opacity: 1; transform: translate(-50%, 0); } 
+}</style>
 </head>
 <body>
     <div class="main-container">
@@ -326,5 +336,22 @@
             <p class="mt-8 text-[8px] text-gray-600 uppercase tracking-[4px]">© 2026 NGUYEN NHAT TIEN</p>
         </div>
     </div>
+<div id="notification">Tất cả các dịch vụ nhắn Zalo admin để chạy tay và lên đơn</div>
+
+<script>
+    // 1. Hàm hiện thông báo
+    function showNote() {
+        var note = document.getElementById("notification");
+        note.style.display = "block";
+        setTimeout(function(){ 
+            note.style.display = "none"; 
+        }, 3000);
+    }
+
+    // 2. Tự động gắn lệnh cho TẤT CẢ các dịch vụ (class glass)
+    document.querySelectorAll('.glass').forEach(function(item) {
+        item.addEventListener('click', showNote);
+    });
+</script>
 </body>
 </html>
