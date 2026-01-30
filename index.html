@@ -8,118 +8,127 @@
     <meta property="og:description" content="Cung cấp tài nguyên & Dịch vụ MMO chuyên nghiệp">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); min-height: 100vh; font-family: sans-serif; color: white; padding: 20px; }
-        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 12px 18px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; transition: 0.3s; }
+        body { background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); min-height: 100vh; font-family: sans-serif; color: white; display: flex; justify-content: center; align-items: flex-start; padding: 40px 20px; }
+        .main-container { width: 100%; max-width: 450px; } 
+        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 12px 18px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; transition: 0.3s; font-size: 14px; }
         .glass:hover { background: rgba(168, 85, 247, 0.1); transform: translateX(5px); }
-        .price { color: #facc15; font-weight: bold; }
-        details summary { list-style: none; cursor: pointer; background: rgba(168, 85, 247, 0.2); padding: 15px; border-radius: 12px; font-weight: bold; text-transform: uppercase; border: 1px solid rgba(168, 85, 247, 0.4); margin-top: 15px; display: flex; justify-content: space-between; align-items: center; transition: 0.3s; }
+        .price { color: #facc15; font-weight: bold; font-size: 13px; }
+        details summary { list-style: none; cursor: pointer; background: rgba(168, 85, 247, 0.2); padding: 15px; border-radius: 12px; font-weight: bold; text-transform: uppercase; border: 1px solid rgba(168, 85, 247, 0.4); margin-top: 15px; display: flex; justify-content: space-between; align-items: center; transition: 0.3s; font-size: 13px; }
         details summary:hover { background: rgba(168, 85, 247, 0.4); }
         details[open] summary { border-bottom-left-radius: 0; border-bottom-right-radius: 0; background: #a855f7; }
         .content { border: 1px solid rgba(168, 85, 247, 0.4); border-top: none; padding: 10px; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; background: rgba(255, 255, 255, 0.02); }
         .sub-cat { font-size: 10px; color: #a855f7; font-weight: bold; margin: 15px 0 8px 8px; letter-spacing: 1px; }
-        .btn-contact { flex: 1; py: 3; border-radius: 12px; font-weight: bold; font-size: 10px; display: flex; align-items: center; justify-content: center; gap: 4px; transition: 0.3s; }
+        .contact-group { display: flex; gap: 8px; margin-top: 15px; }
+        .btn-sm { flex: 1; py: 3; border-radius: 10px; font-weight: bold; font-size: 10px; text-align: center; display: flex; align-items: center; justify-content: center; gap: 3px; height: 40px; }
     </style>
 </head>
 <body>
-    <div class="max-w-2xl mx-auto">
-        <div class="text-center mb-8">
-            <h1 class="text-4xl font-black bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent uppercase tracking-tighter">NGUYỄN NHẬT TIẾN</h1>
-            <p class="text-gray-400 text-xs mt-2 italic">Cung cấp tài nguyên & Dịch vụ MMO chuyên nghiệp</p>
+    <div class="main-container">
+        <div class="text-center mb-10">
+            <h1 class="text-3xl font-black bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent uppercase tracking-tighter">NGUYỄN NHẬT TIẾN</h1>
+            <p class="text-gray-400 text-[10px] mt-2 italic uppercase tracking-widest">Dịch vụ MMO chuyên nghiệp</p>
         </div>
 
         <details>
             <summary>🔥 Tài Nguyên Tut <span>▼</span></summary>
             <div class="content">
-                 <div class="glass"><span>TUT Link gỡ SĐT dùng chung FB</span><span class="price">70.000đ</span></div>
-                <div class="glass"><span>TUT Add Email vào Facebook</span><span class="price">70.000đ</span></div>
-                <div class="glass"><span>TUT Add SĐT vào Facebook</span><span class="price">70.000đ</span></div>
-                <div class="glass"><span>TUT đá kick all thiết bị FB</span><span class="price">70.000đ</span></div>
-                <div class="glass bg-purple-900/40 border-purple-500"><span>🎁 COMBO 4 TUT + VIDEO</span><span class="price text-xl">220.000đ</span></div>
-                <div class="glass"><span>TUT Spam kết bạn không giới hạn</span><span class="price">50.000đ</span></div>
-                <div class="glass"><span>TUT Locket quay 15s (No VPN)</span><span class="price">40.000đ</span></div>
-                <div class="glass"><span>TUT Zalo lên Business cho Acc</span><span class="price">100.000đ</span></div>
-                <div class="glass"><span>TUT tạo STK số đẹp MBBank</span><span class="price">30.000đ</span></div>
-                <div class="glass"><span>TUT Dame Profile mới</span><span class="price">50.000đ</span></div>
+                <div class="glass"><span>Gỡ SĐT dùng chung FB</span><span class="price">70.000đ</span></div>
+                <div class="glass"><span>Add Email vào Facebook</span><span class="price">70.000đ</span></div>
+                <div class="glass"><span>Add SĐT vào Facebook</span><span class="price">70.000đ</span></div>
+                <div class="glass"><span>Đá kick all thiết bị FB</span><span class="price">70.000đ</span></div>
+                <div class="glass bg-purple-900/40 border-purple-500"><span>🎁 COMBO 4 TUT + VIDEO</span><span class="price">220.000đ</span></div>
+                <div class="glass"><span>Spam kết bạn không GH</span><span class="price">50.000đ</span></div>
+                <div class="glass"><span>Locket quay 15s (No VPN)</span><span class="price">40.000đ</span></div>
+                <div class="glass"><span>Zalo lên Business</span><span class="price">100.000đ</span></div>
+                <div class="glass"><span>Tạo STK đẹp MBBank</span><span class="price">30.000đ</span></div>
+                <div class="glass"><span>Dame Profile mới</span><span class="price">50.000đ</span></div>
                 <div class="glass"><span>Fake bill</span><span class="price">10.000đ</span></div>
-                <div class="glass"><span>Vô hiệu hóa mail (Có phôi SĐT)</span><span class="price">120.000đ</span></div
-                <div class="flex gap-2 my-4">
-                    <a href="https://zalo.me/0966181924" class="btn-contact bg-blue-600 py-3 rounded-xl flex-1 text-center">💬 ZALO</a>
-                    <a href="https://t.me/ntienz8386" class="btn-contact bg-sky-500 py-3 rounded-xl flex-1 text-center">✈️ TELE</a>
-                    <a href="https://www.facebook.com/ntien210" class="btn-contact bg-blue-800 py-3 rounded-xl flex-1 text-center">📘 FB</a>
-                </div>
+                <div class="glass"><span>Vô hiệu hóa mail</span><span class="price">120.000đ</span></div>
+                <div class="contact-group">
+                    <a href="https://zalo.me/0966181924" class="btn-sm bg-blue-600">💬 Zalo</a>
+                    <a href="https://t.me/ntienz8386" class="btn-sm bg-sky-500">✈️ Telegram</a>
+                    <a href="https://www.facebook.com/ntien210" class="btn-sm bg-blue-800">📘 Facebook</a></div>
             </div>
         </details>
 
-         <details>
+        
+        <details>
             <summary>📊 TĂNG TƯƠNG TÁC ĐA NỀN TẢNG <span>▼</span></summary>
             <div class="content">
                 <div class="sub-cat">FACEBOOK</div>
-                <div class="glass"><span>1000 Follow Facebook</span><span class="price">5k</span></div>
-                <div class="glass"><span>1000 Cảm xúc bài viết VN</span><span class="price">9k</span></div>
-                <div class="glass"><span>1000 View Story / Reels</span><span class="price">6k</span></div>
-                <div class="glass"><span>1000 Thành viên nhóm</span><span class="price">20k</span></div>
-                <div class="glass"><span>1000 Chia sẻ (Share)</span><span class="price">20k</span></div>
+                <div class="glass"><span>1000 Theo dõi (Follow) Facebook</span><span class="price">5.000đ</span></div>
+                <div class="glass"><span>1000 Cảm xúc bày viết tài nguyên VN </span><span class="price">9.000đ</span></div>
+                <div class="glass"><span>1000 View Story / Video Reels</span><span class="price">6.000đ</span></div>
+                <div class="glass"><span>1000 Thành viên nhóm (Group)</span><span class="price">20.000đ</span></div>
+                <div class="glass"><span>1000 Chia sẻ (Share) cân mọi link</span><span class="price">20.000đ</span></div>
 
-                <div class="sub-cat">TIKTOK</div>
-                <div class="glass"><span>2000 View TikTok</span><span class="price">1k</span></div>
-                <div class="glass"><span>1000 Tim ảo</span><span class="price">2k</span></div>
-                <div class="glass"><span>1000 Tim ngoại (Hiếm tụt)</span><span class="price">7k</span></div>
-                <div class="glass"><span>1000 Tim ngoại VIP (Không tụt)</span><span class="price">10k</span></div>
-                <div class="glass"><span>1000 Follow Việt Nam</span><span class="price">20k</span></div>
-                <div class="glass"><span>1000 Bình luận Việt</span><span class="price">40k</span></div>
-
-                <div class="sub-cat">INSTAGRAM / YOUTUBE</div>
-                <div class="glass"><span>1000 Follow Instagram</span><span class="price">30k</span></div>
-                <div class="glass"><span>1000 View YouTube</span><span class="price">35k</span></div>
-
-                <div class="sub-cat">THREADS / TELEGRAM / GOOGLE</div>
-                <div class="glass"><span>1000 Follow Threads</span><span class="price">100k</span></div>
-                <div class="glass"><span>1000 Thành viên Tele (BH 30n)</span><span class="price">30k</span></div>
-                <div class="glass"><span>Đánh giá 5 sao Google Map</span><span class="price">20k</span></div>
-
+                <div class="sub-cat">TIKTOk</div>
+                <div class="glass"><span>2000 View TikTok</span><span class="price">1.000đ</span></div>
+                <div class="glass"><span>1000 tim ảo</span><span class="price">2.000đ</span></div>
+                <div class="glass"><span>1000 tim ngoại hiếm tụt</span><span class="price">7.000đ</span></div>
+                <div class="glass"><span>1000 tim ngoại vip không tụt</span><span class="price">10.000đ</span></div>
+                <div class="glass"><span>1000 Yêu thích</span><span class="price">5.000đ</span></div>
+                <div class="glass"><span>1000 Chia sẽ</span><span class="price">6.000đ</span></div>
+                <div class="glass"><span>1000 Bình luận Việt Nam</span><span class="price">40.000đ</span></div>
+                <div class="glass"><span>1000 Follow Việt Nam (TikTok)</span><span class="price">20.000đ</span></div>
+                <div class="glass"><span>1000 Follow ngoại bảo hành 15 ngày</span><span class="price">50.000đ</span></div>
+                <div class="glass"><span>1000 Lượt thích bình luận</span><span class="price">5.000đ</span></div>
+                <div class="sub-cat">INSTAGRAM</div>                                                                                                                                                                                                                  <div class="glass"><span>1000 Follow nhanh</span><span class="price">30.000đ</span></div>
+                <div class="glass"><span>1000 Tim ảo lên chậm</span><span class="price">7.000đ</span></div>
+                <div class="glass"><span>3000 View </span><span class="price">1.000đ</span></div>
+                <div class="sub-cat">YOUTUBE</div>
+                <div class="glass"><span>1000 View Video Ngắn/Dài</span><span class="price">35.000đ</span></div>
+                <div class="glass"><span>1000 Like Video Ngắn</span><span class="price">25.000đ</span></div>
+                <div class="sub-cat">THREADS & TELEGRAM</div>
+                <div class="sub-cat">THEARDS</div>
+                <div class="glass"><span>1000 Follow Threads</span><span class="price">100.000đ</span></div>
+                <div class="sub-cat">TELEGRAM</div>
+                <div class="glass"><span>1000 Cảm xúc Random</span><span class="price">2.000đ</span></div>
+                <div class="glass"><span>1000 TV Nhóm BH 2 ngày</span><span class="price">5.000đ</span></div>
+                <div class="glass"><span>1000 TV nhóm BH 30 ngày</span><span class="price">30.000đ</span></div>
+                <div class="sub-cat">GOOGLE MAP</div>
+                <div class="glass"><span>Đánh giá 5 sao Google Map</span><span class="price">20.000đ</span></div>
                 <div class="contact-group">
-                    <a href="https://zalo.me/0966181924" class="btn-sm bg-blue-600">💬 ZALO</a>
-                    <a href="https://t.me/ntienz8386" class="btn-sm bg-sky-500">✈️ TELE</a>
-                    <a href="https://www.facebook.com/ntien210" class="btn-sm bg-blue-800">📘 FB</a>
-                </div>
+                    <a href="https://zalo.me/0966181924" class="btn-sm bg-blue-600">💬 Zalo</a>
+                    <a href="https://t.me/ntienz8386" class="btn-sm bg-sky-500">✈️ Telegram</a>
+                    <a href="https://www.facebook.com/ntien210" class="btn-sm bg-blue-800">📘 Facebook</a></div>
             </div>
-         </details>
+        </details>
 
         <details>
             <summary>🎮 DỊCH VỤ CÀY GAME THUÊ <span>▼</span></summary>
             <div class="content">
-                <div class="glass"><span>Free Fire</span><span class="price">Báo giá</span></div>
-                <div class="glass"><span>Liên Quân</span><span class="price">Báo giá</span></div>
+                <div class="glass"><span>Free Fire</span><span class="price">Liên hệ báo giá</span></div>
+                <div class="glass"><span>Liên Quân</span><span class="price">Liên hệ báo giá</span></div>
                 <div class="flex gap-2 my-4">
                     <a href="https://zalo.me/0966181924" class="btn-contact bg-blue-600 py-3 rounded-xl flex-1 text-center">💬 ZALO</a>
                     <a href="https://t.me/ntienz8386" class="btn-contact bg-sky-500 py-3 rounded-xl flex-1 text-center">✈️ TELE</a>
-                    <a href="https://www.facebook.com/ntien210" class="btn-contact bg-blue-800 py-3 rounded-xl flex-1 text-center">📘 FB</a>
-                </div>
+                    <a href="https://www.facebook.com/ntien210" class="btn-contact bg-blue-800 py-3 rounded-xl flex-1 text-center">📘 FB</a></div>z
             </div>
-        </details>
-
-        <details>
-            <summary>🛍️ DỊCH VỤ SHOPEE <span>▼</span></summary>
+        </details>details>
+        
+        <details>     
+            <summary>🛍️ Shopee & Game <span>▼</span></summary>
             <div class="content">
-                <div class="glass"><span>Voucher giảm 60k</span><span class="price">7.000đ</span></div>
-                <div class="glass"><span>Đặt hàng hộ</span><span class="price">25.000đ</span></div>
-                <div class="flex gap-2 my-4">
-                    <a href="https://zalo.me/0966181924" class="btn-contact bg-blue-600 py-3 rounded-xl flex-1 text-center">💬 ZALO</a>
-                    <a href="https://t.me/ntienz8386" class="btn-contact bg-sky-500 py-3 rounded-xl flex-1 text-center">✈️ TELE</a>
-                    <a href="https://www.facebook.com/ntien210" class="btn-contact bg-blue-800 py-3 rounded-xl flex-1 text-center">📘 FB</a>
-                </div>
-                <p class="text-[10px] text-red-400 mt-1 leading-relaxed">* Lưu ý: Voucher chỉ áp dụng cho SĐT mới. Đặt hàng hộ nhắn admin cung cấp: Size, Cân nặng, Link SP...</p>
+                <div class="sub-cat">SHOPEE</div>
+                <div class="glass"><span>Voucher 60k đơn 0đ</span><span class="price">7.000đ</span></div>
+                <div class="glass"><span>Đặt hàng áp voucher hộ</span><span class="price">25.000đ</span></div>
+                <div class="sub-cat">GAME</div>
+                <div class="glass"><span>Cày thuê các loại Game</span><span class="price">Liên hệ</span></div>
+                <div class="contact-group">
+                    <a href="https://zalo.me/0966181924" class="btn-sm bg-blue-600">💬 Zalo</a>
+                    <a href="https://t.me/ntienz8386" class="btn-sm bg-sky-500">✈️ Telegram</a>
+                    <a href="https://www.facebook.com/ntien210" class="btn-sm bg-blue-800">📘 Facebook</a></div>
             </div>
         </details>
 
-        <div class="mt-12 mb-10 text-center border-t border-white/10 pt-8">
-            <h3 class="text-xs text-gray-400 uppercase tracking-widest mb-4">Kết nối chính chủ</h3>
+        <div class="mt-12 text-center pt-8 border-t border-white/10">
             <div class="flex gap-2">
-                <a href="https://zalo.me/0966181924" target="_blank" class="flex-1 py-4 bg-blue-600 hover:bg-blue-700 rounded-2xl font-bold text-[11px] shadow-lg flex items-center justify-center gap-1">💬 ZALO</a>
-                <a href="https://t.me/ntienz8386" target="_blank" class="flex-1 py-4 bg-sky-500 hover:bg-sky-600 rounded-2xl font-bold text-[11px] shadow-lg flex items-center justify-center gap-1">✈️ TELEGRAM</a>
-                <a href="https://www.facebook.com/ntien210" target="_blank" class="flex-1 py-4 bg-blue-800 hover:bg-blue-900 rounded-2xl font-bold text-[11px] shadow-lg flex items-center justify-center gap-1">📘 FACEBOOK</a>
+                <a href="https://zalo.me/0966181924" class="btn-sm bg-blue-600 h-12 rounded-xl flex-1">ZALO</a>
+                <a href="https://t.me/ntienz8386" class="btn-sm bg-sky-500 h-12 rounded-xl flex-1">TELE</a>
+                <a href="https://www.facebook.com/ntien210" class="btn-sm bg-blue-800 h-12 rounded-xl flex-1">FB</a>
             </div>
-            <p class="mt-10 text-[9px] text-gray-600 uppercase tracking-[3px] italic">© 2026 Designed for Nguyen Nhat Tien</p>
+            <p class="mt-8 text-[8px] text-gray-600 uppercase tracking-[4px]">© 2026 NGUYEN NHAT TIEN</p>
         </div>
     </div>
 </body>
