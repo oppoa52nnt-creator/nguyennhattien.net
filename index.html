@@ -7,6 +7,14 @@
     <title>NGUYỄN NHẬT TIẾN</title>
     <meta property="og:title" content="NGUYỄN NHẬT TIẾN">
     <meta property="og:description" content="Cung cấp tài nguyên & Dịch vụ MMO chuyên nghiệp">
+    <div id="auto-menu" class="flex overflow-x-auto gap-2 pb-4 mb-6 no-scrollbar"></div>
+
+<style>
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    html { scroll-behavior: smooth; }
+    .menu-btn { whitespace-nowrap; px-4; py-2; bg-purple-600/30; border; border-purple-500/50; border-radius: 9999px; font-size: 11px; font-weight: bold; color: white; flex-shrink: 0; }
+</style>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); min-height: 100vh; font-family: sans-serif; color: white; display: flex; justify-content: center; align-items: flex-start; padding: 40px 20px; }
@@ -351,6 +359,33 @@
     // 2. Tự động gắn lệnh cho TẤT CẢ các dịch vụ (class glass)
     document.querySelectorAll('.glass').forEach(function(item) {
         item.addEventListener('click', showNote);
+    });
+</script>
+<script>
+    // 1. Tự động gắn ID và tạo Menu
+    const details = document.querySelectorAll('details');
+    const menuContainer = document.getElementById('auto-menu');
+
+    details.forEach((item, index) => {
+        // Tự gán ID cho từng mục
+        const menuId = 'muc-' + index;
+        item.id = menuId;
+
+        // Lấy chữ trong summary để làm tên nút (bỏ bớt ký tự ▼ nếu có)
+        let title = item.querySelector('summary').innerText.replace('▼', '').trim();
+
+        // Tạo nút bấm
+        const btn = document.createElement('a');
+        btn.href = '#' + menuId;
+        btn.className = 'menu-btn';
+        btn.innerText = title;
+
+        // Khi bấm nút: Tự mở mục đó ra
+        btn.onclick = function() {
+            item.setAttribute('open', '');
+        };
+
+        menuContainer.appendChild(btn);
     });
 </script>
 </body>
