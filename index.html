@@ -4,16 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NGUYỄN NHẬT TIẾN</title>
+    <title>NGUYỄN NHẬT TIẾN</title><script src="https://cdn.tailwindcss.com"></script>
     <meta property="og:title" content="NGUYỄN NHẬT TIẾN">
     <meta property="og:description" content="Cung cấp tài nguyên & Dịch vụ MMO chuyên nghiệp">
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     html { scroll-behavior: smooth; }
     .menu-btn { whitespace-nowrap; px-4; py-2; bg-purple-600/30; border; border-purple-500/50; border-radius: 9999px; font-size: 11px; font-weight: bold; color: white; flex-shrink: 0; }
-</style>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
         body { background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); min-height: 100vh; font-family: sans-serif; color: white; display: flex; justify-content: center; align-items: flex-start; padding: 40px 20px; }
         .main-container { width: 100%; max-width: 450px; } 
         .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 12px 18px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; transition: 0.3s; font-size: 14px; }
@@ -36,7 +33,25 @@
 @keyframes fadeInUp { 
     from { opacity: 0; transform: translate(-50%, 20px); } 
     to { opacity: 1; transform: translate(-50%, 0); } 
-}</style>
+/* Hiệu ứng mũi tên nhấp nháy */
+.scroll-hint {
+    text-align: center; color: #facc15; font-size: 12px;
+    font-weight: bold; margin: 20px 0; animation: bounce 2s infinite;
+}
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(-8px);}
+    60% {transform: translateY(-4px);}
+}
+
+/* Footer dính chặt dưới đáy */
+.sticky-footer {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: rgba(15, 12, 41, 0.95); backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(168, 85, 247, 0.4);
+    padding: 10px 15px; display: flex; gap: 10px; z-index: 9999;
+}
+.spacer { height: 80px; }}</style>
 </head>
 <body>
     <div class="main-container">
