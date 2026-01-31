@@ -341,56 +341,47 @@
             </div>
             <p class="mt-8 text-[8px] text-gray-600 uppercase tracking-[4px]">© 2026 NGUYEN NHAT TIEN</p>
         </div>
-   <script>
-// 1. Xử lý khi nhấn vào mục TO (Tăng tương tác)
-document.querySelectorAll('details summary').forEach(summary => {
-    summary.addEventListener('click', function() {
-        if (this.innerText.includes('TĂNG TƯƠNG TÁC')) {
-            const content = this.nextElementSibling;
-            if (!content.querySelector('.note-chung')) {
-                const noteChung = document.createElement('div');
-                noteChung.className = 'note-chung';
-                noteChung.innerHTML = `
-                    <p style="color: #ff4d4d; font-weight: bold; font-size: 13px; padding: 10px; border: 1px solid red; border-radius: 8px; margin-bottom: 10px; background: rgba(255,0,0,0.1);">
-                        🔴 CHÚ Ý CHUNG: Nhấn vào tên các dịch vụ bên dưới để đặt đơn nhé.
-                    </p>`;
-                content.prepend(noteChung);
-            }
-        }
-    });
-});
+  <script>
+// 1. Tìm đúng cái phần "TĂNG TƯƠNG TÁC"
+document.querySelectorAll('details').forEach(detail => {
+    const summary = detail.querySelector('summary');
+    
+    // Nếu tiêu đề mục có chữ "TĂNG TƯƠNG TÁC" thì mới xử lý bên trong
+    if (summary && summary.innerText.includes('TĂNG TƯƠNG TÁC')) {
+        
+        // Tìm tất cả các dịch vụ nhỏ (glass) chỉ trong mục này
+        const dvNho = detail.querySelectorAll('.glass');
+        
+        dvNho.forEach(item => {
+            item.style.cursor = 'pointer';
+            item.addEventListener('click', function() {
+                
+                // Xóa cái lưu ý cũ đang hiện (nếu có) trên toàn trang
+                const oldNote = document.querySelector('.note-rieng');
+                if (oldNote) oldNote.remove();
 
-// 2. Xử lý khi nhấn vào dịch vụ NHỎ (Tự ẩn cái cũ)
-document.querySelectorAll('.glass').forEach(item => {
-    item.style.cursor = 'pointer';
-    item.addEventListener('click', function() {
-        // TÌM VÀ XÓA CÁI LƯU Ý CŨ ĐANG HIỆN (Nếu có)
-        const oldNote = document.querySelector('.note-rieng');
-        if (oldNote) {
-            oldNote.remove();
-        }
-
-        // Tạo lưu ý mới cho mục vừa nhấn
-        const name = this.querySelector('span:first-child').innerText;
-        const noteRieng = document.createElement('div');
-        noteRieng.className = 'note-rieng';
-        noteRieng.innerHTML = `
-            <div style="background: rgba(255, 0, 0, 0.1); border-left: 4px solid #ff4d4d; padding: 10px; margin: 5px 0 10px 10px; animation: slideIn 0.3s ease-out;">
-                <p style="color: #ff4d4d; font-size: 12px; font-weight: bold; margin-bottom: 5px;">
-                    📌 Dịch vụ: ${name}
-                </p>
-                <p style="color: white; font-size: 11px; margin-bottom: 8px;">Đọc thông tin bên dưới và nhấn vào để kết nối Zalo:</p>
-                <a href="https://zalo.me/0966181924" target="_blank" style="display: inline-block; background: #0068ff; color: white; padding: 5px 12px; border-radius: 5px; font-size: 11px; font-weight: bold; text-decoration: none;">
-                    Chuyển khoản đúng sô tiền tại mã QR trong mục nạp tiền,sau đó chụp bill rồi nhắn qua Zalo Admin và gửi các thông tin :Tên dịch vụ, tên nền tảng,link video,số lượng cần buff cuối cùng là gửi bill đã chụp trước đó.(Ví dụ:Tim ảo,Tiktok<https://abcd...,200 và gửi ảnh bill.
-                </a>
-            </div>`;
-        this.after(noteRieng);
-    });
+                // Tạo lưu ý mới
+                const name = this.querySelector('span:first-child').innerText;
+                const noteRieng = document.createElement('div');
+                noteRieng.className = 'note-rieng';
+                noteRieng.innerHTML = `
+                    <div style="background: rgba(255, 0, 0, 0.1); border-left: 4px solid #ff4d4d; padding: 10px; margin: 5px 0 10px 10px; animation: slideIn 0.3s ease-out;">
+                        <p style="color: #ff4d4d; font-size: 12px; font-weight: bold; margin-bottom: 5px;">
+                            📌 Dịch vụ: ${name}
+                        </p>
+                        <p style="color: white; font-size: 11px; margin-bottom: 8px;">Vui lòng chụp bill + gửi link qua Zalo ngay:</p>
+                        <a href="https://zalo.me/0966181924" target="_blank" style="display: inline-block; background: #0068ff; color: white; padding: 5px 12px; border-radius: 5px; font-size: 11px; font-weight: bold; text-decoration: none;">
+                            NHẮN ZALO CHO TIẾN
+                        </a>
+                    </div>`;
+                this.after(noteRieng);
+            });
+        });
+    }
 });
 </script>
 
 <style>
-/* Hiệu ứng hiện ra nhẹ nhàng */
 @keyframes slideIn {
     from { opacity: 0; transform: translateX(-10px); }
     to { opacity: 1; transform: translateX(0); }
