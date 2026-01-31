@@ -114,7 +114,6 @@ input { width: 100%; padding: 10px; margin: 8px 0; border-radius: 8px; backgroun
                 <div class="glass"><span>1000 View Video Ngắn</span><span class="price">28.301đ</span></div>
                 <div class="glass"><span>1000 View Video Dài</span><span class="price">28.944đ</span></div>
                 <div class="sub-cat">THREADS</div>
-                <div class="sub-cat">THEARDS</div>
                 <div class="glass"><span>1000 Follow Threads</span><span class="price">100.000đ</span></div>
                 <div class="sub-cat">TELEGRAM</div>
                 <div class="glass"><span>1000 Cảm xúc Random</span><span class="price">888đ</span></div>
@@ -411,7 +410,32 @@ document.querySelectorAll('.glass').forEach(item => {
         }
     });
 });
+// THÊM ĐOẠN NÀY VÀO TRONG THẺ <script> CỦA ANH
+document.querySelectorAll('.glass').forEach(item => {
+    item.style.cursor = 'pointer';
+    item.addEventListener('click', function() {
+        // Lấy tên dịch vụ từ thẻ span đầu tiên
+        let name = this.querySelector('span:first-child').innerText;
+        // Lấy giá từ thẻ có class price
+        let priceText = this.querySelector('.price').innerText;
+        // Chuyển "7.000đ" thành số 7000
+        let price = parseInt(priceText.replace(/\D/g, ''));
+        
+        if (!isNaN(price)) {
+            openOrder(name, price);
+        }
+    });
+});
 
+function openOrder(name, price) {
+    serviceName = name;
+    currentPrice = price;
+    document.getElementById('form-service-name').innerText = name;
+    document.getElementById('order-form').style.display = 'flex';
+    document.getElementById('form-quantity').value = 1000;
+    updatePrice();
+}
+// ... các function cũ của anh bên dưới giữ nguyên ...
 function openOrder(name, price) {
     serviceName = name;
     currentPrice = price;
@@ -426,7 +450,7 @@ function updatePrice() {
     let total = (qty / 1000) * currentPrice;
     document.getElementById('total-price').innerText = "Tổng: " + total.toLocaleString('vi-VN') + "đ";
     
-    // Cập nhật mã QR (Thay số điện thoại ZaloPay của anh vào đây)
+    // Cập nhật mã QR (0966181924)
     let sdt = "0966181924"; 
     let qrUrl = `https://img.vietqr.io/image/970422-0348710329-compact2.jpg?amount=${total}&addInfo=Thanh toan ${encodeURIComponent(serviceName)}`;
     document.getElementById('form-qr').src = qrUrl;
