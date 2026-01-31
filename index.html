@@ -12,6 +12,16 @@
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     html { scroll-behavior: smooth; }
     .menu-btn { whitespace-nowrap; px-4; py-2; bg-purple-600/30; border; border-purple-500/50; border-radius: 9999px; font-size: 11px; font-weight: bold; color: white; flex-shrink: 0; }
+#order-form { 
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); 
+    z-index: 10000; align-items: center; justify-content: center; padding: 20px;
+}
+.form-content { 
+    background: #1a1a2e; border: 1px solid #a855f7; padding: 20px; 
+    border-radius: 15px; width: 100%; max-width: 400px;
+}
+.note-red { color: #ff4d4d; font-size: 12px; font-weight: bold; margin-bottom: 10px; }
+input { width: 100%; padding: 10px; margin: 8px 0; border-radius: 8px; background: #0f0c29; border: 1px solid #302b63; color: white; }
 </style>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -360,5 +370,85 @@
     });
 </script>
 <script>
+<div id="order-form" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 10000; align-items: center; justify-content: center; padding: 20px;">
+    <div style="background: #1a1a2e; border: 2px solid #a855f7; padding: 25px; border-radius: 20px; width: 100%; max-width: 400px; box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);">
+        <h3 id="form-service-name" style="font-size: 20px; font-weight: 900; color: #a855f7; text-transform: uppercase; margin-bottom: 10px;"></h3>
+        <p style="color: #ff4d4d; font-size: 12px; font-weight: bold; margin-bottom: 15px;">⚠️ CHÚ Ý: Chụp bill sau khi chuyển khoản!</p>
+        
+        <label style="font-size: 12px; color: #ccc;">Liên kết (Link bài viết/profile):</label>
+        <input type="text" id="form-link" placeholder="Dán link vào đây..." style="width: 100%; padding: 12px; margin: 5px 0 15px; border-radius: 10px; background: #0f0c29; border: 1px solid #302b63; color: white;">
+        
+        <label style="font-size: 12px; color: #ccc;">Số lượng cần tăng:</label>
+        <input type="number" id="form-quantity" placeholder="Ví dụ: 1000" oninput="updatePrice()" style="width: 100%; padding: 12px; margin: 5px 0 15px; border-radius: 10px; background: #0f0c29; border: 1px solid #302b63; color: white;">
+        
+        <div style="background: white; p: 15px; border-radius: 15px; text-align: center; margin-bottom: 15px; padding: 10px;">
+            <p style="color: black; font-weight: 800; font-size: 13px; margin-bottom: 5px;">QUÉT MÃ THANH TOÁN</p>
+            <img id="form-qr" src="" style="width: 180px; height: 180px; margin: 0 auto; display: block; border: 1px solid #eee;">
+            <p id="total-price" style="color: #2563eb; font-weight: 900; font-size: 18px; margin-top: 8px;">Tổng: 0đ</p>
+        </div>
+
+        <div style="display: flex; gap: 10px;">
+            <button onclick="sendToZalo()" style="flex: 2; background: #2563eb; color: white; padding: 12px; border-radius: 10px; font-weight: bold; border: none; cursor: pointer;">GỬI BILL QUA ZALO</button>
+            <button onclick="closeForm()" style="flex: 1; background: #4b5563; color: white; padding: 12px; border-radius: 10px; font-weight: bold; border: none; cursor: pointer;">ĐÓNG</button>
+        </div>
+    </div>
+</div>
+
+<script>
+let currentPrice = 0;
+let serviceName = "";
+
+// Tự động gắn sự kiện Click cho tất cả các dòng dịch vụ
+document.querySelectorAll('.glass').forEach(item => {
+    item.style.cursor = 'pointer';
+    item.addEventListener('click', function() {
+        let name = this.querySelector('span:first-child').innerText;
+        let priceText = this.querySelector('.price').innerText;
+        let price = parseInt(priceText.replace(/\D/g, ''));
+        
+        if (!isNaN(price)) {
+            openOrder(name, price);
+        }
+    });
+});
+
+function openOrder(name, price) {
+    serviceName = name;
+    currentPrice = price;
+    document.getElementById('form-service-name').innerText = name;
+    document.getElementById('order-form').style.display = 'flex';
+    document.getElementById('form-quantity').value = 1000;
+    updatePrice();
+}
+
+function updatePrice() {
+    let qty = document.getElementById('form-quantity').value || 0;
+    let total = (qty / 1000) * currentPrice;
+    document.getElementById('total-price').innerText = "Tổng: " + total.toLocaleString('vi-VN') + "đ";
+    
+    // Cập nhật mã QR (Thay số điện thoại ZaloPay của anh vào đây)
+    let sdt = "0966181924"; 
+    let qrUrl = `https://img.vietqr.io/image/970422-0348710329-compact2.jpg?amount=${total}&addInfo=Thanh toan ${encodeURIComponent(serviceName)}`;
+    document.getElementById('form-qr').src = qrUrl;
+}
+
+function closeForm() { 
+    document.getElementById('order-form').style.display = 'none'; 
+}
+
+function sendToZalo() {
+    let link = document.getElementById('form-link').value;
+    let qty = document.getElementById('form-quantity').value;
+    let total = document.getElementById('total-price').innerText;
+    
+    if(!link || qty <= 0) {
+        alert("Anh vui lòng nhập đầy đủ Link và Số lượng nhé!");
+        return;
+    }
+    
+    let text = `Chào Nhật Tiến, mình đặt đơn:\n- Dịch vụ: ${serviceName}\n- Link: ${link}\n- Số lượng: ${qty}\n- ${total}\n(Mình đã chuyển khoản, bạn kiểm tra bill nhé!)`;
+    window.open(`https://zalo.me/0966181924?text=${encodeURIComponent(text)}`, '_blank');
+}
+</script>
 </body>
 </html>
