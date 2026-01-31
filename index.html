@@ -407,7 +407,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <p id="final-total" style="color:#4ade80; font-weight:bold; font-size:24px; margin:5px 0;"></p>
                                 <p style="font-size:10px; color:#94a3b8;">(Vui lòng nhập đúng số tiền khi chuyển khoản)</p>
                             </div>
-                            <button id="btn-done" style="width:100%; background:#22c55e; color:white; border:none; padding:12px; border-radius:8px; font-weight:bold; cursor:pointer;">TÔI ĐÃ CHUYỂN TIỀN XONG</button>
+                            <button id="btn-done" style="width:100%; background:#22c55e; color:white; border:none; padding:12px; border-radius:8px; font-weight:bold; cursor:pointer;">ĐÃ THANH TOÁN</button>
                         </div>
 
                         <div id="copy-area" style="display:none; background:#020617; padding:15px; margin-top:15px; border-radius:10px; border:1px dashed #22c55e;">
@@ -437,7 +437,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         const link = document.getElementById('link-v').value;
                         const qty = document.getElementById('qty-v').value;
                         const total = document.getElementById('final-total').innerText;
-                        const content = `[ĐƠN HÀNG MỚI]\n──────────────\nDịch vụ: ${name}\nSố lượng: ${qty}\nLink: ${link}\nTổng tiền: ${total}\n──────────────\nTrạng thái: ĐÃ CK, TIẾN CHECK GIÚP!`;
+                        const content = `[ĐƠN HÀNG MỚI]\n──────────────\nDịch vụ: ${name}\nSố lượng: ${qty}\nLink: ${link}\nTổng tiền: ${total}\n──────────────\nTrạng thái: ĐÃ CHUYỂN KHOẢN , TIẾN CHECK GIÚP!`;
                         
                         document.getElementById('qr-area').style.display = 'none';
                         document.getElementById('copy-area').style.display = 'block';
