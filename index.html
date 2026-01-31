@@ -104,7 +104,6 @@
                 <div class="glass"><span>1000 View Video Ngắn</span><span class="price">28.301đ</span></div>
                 <div class="glass"><span>1000 View Video Dài</span><span class="price">28.944đ</span></div>
                 <div class="sub-cat">THREADS</div>
-                <div class="sub-cat">THEARDS</div>
                 <div class="glass"><span>1000 Follow Threads</span><span class="price">100.000đ</span></div>
                 <div class="sub-cat">TELEGRAM</div>
                 <div class="glass"><span>1000 Cảm xúc Random</span><span class="price">888đ</span></div>
@@ -342,106 +341,107 @@
             <p class="mt-8 text-[8px] text-gray-600 uppercase tracking-[4px]">© 2026 NGUYEN NHAT TIEN</p>
         </div>
 <script>
-document.querySelectorAll('details').forEach(detail => {
-    const summary = detail.querySelector('summary');
+document.addEventListener('DOMContentLoaded', function() {
+    const details = document.querySelectorAll('details');
     
-    if (summary && summary.innerText.includes('TĂNG TƯƠNG TÁC')) {
-        // 1. Lưu ý chung khi mở mục lớn
-        summary.addEventListener('click', function() {
-            const content = this.nextElementSibling;
-            if (!content.querySelector('.note-chung')) {
-                const noteChung = document.createElement('div');
-                noteChung.className = 'note-chung';
-                noteChung.innerHTML = `<div style="background:rgba(255,0,0,0.1); border:1px solid red; padding:10px; margin:10px; border-radius:10px; color:#ff4d4d; font-weight:bold; font-size:13px; text-align:center;">🔴 LƯU Ý: Nhập đủ thông tin, ck xong chụp bill gửi Zalo Tiến!</div>`;
-                content.prepend(noteChung);
-            }
-        });
+    details.forEach(detail => {
+        const summary = detail.querySelector('summary');
+        
+        // Chỉ áp dụng cho mục TĂNG TƯƠNG TÁC
+        if (summary && summary.innerText.toUpperCase().includes('TĂNG TƯƠNG TÁC')) {
+            
+            // 1. Lưu ý chung khi mở mục Tăng tương tác
+            summary.addEventListener('click', function() {
+                const content = this.nextElementSibling;
+                if (!content.querySelector('.note-chung')) {
+                    const noteChung = document.createElement('div');
+                    noteChung.innerHTML = `<div style="background:rgba(255,0,0,0.15); border:1px solid red; padding:10px; margin:10px; border-radius:10px; color:#ff4d4d; font-weight:bold; font-size:13px; text-align:center;">🔴 LƯU Ý: Nhập link & số lượng, ck xong chụp bill gửi Zalo Tiến!</div>`;
+                    noteChung.className = 'note-chung';
+                    content.prepend(noteChung);
+                }
+            });
 
-        // 2. Xử lý khi nhấn vào dịch vụ nhỏ
-        detail.querySelectorAll('.glass').forEach(item => {
-            item.style.cursor = 'pointer';
-            item.addEventListener('click', function() {
-                // Xóa form cũ nếu đang mở ở mục khác
-                const oldForm = document.querySelector('.order-box');
-                if (oldForm) oldForm.remove();
-
-                const name = this.querySelector('span:first-child').innerText;
-                const priceText = this.querySelector('.price').innerText;
-                const pricePer1k = parseInt(priceText.replace(/\D/g, ''));
-
-                const orderBox = document.createElement('div');
-                orderBox.className = 'order-box';
-                orderBox.style = "background:#1a1a2e; border:2px solid #a855f7; padding:15px; margin:10px; border-radius:12px; animation:slideIn 0.3s forwards; color: white;";
-                
-                orderBox.innerHTML = `
-                    <h4 style="color:#a855f7; margin-bottom:10px; font-size:14px; font-weight:bold;">🛒 Đặt hàng: ${name}</h4>
-                    <label style="font-size:11px; color:#ccc;">Liên kết (Link):</label>
-                    <input type="text" id="link-v" placeholder="Dán link bài viết..." style="width:100%; padding:8px; margin:5px 0 10px; border-radius:5px; border:1px solid #302b63; background:#0f0c29; color:white;">
+            // 2. Xử lý từng dịch vụ nhỏ (glass)
+            const items = detail.querySelectorAll('.glass');
+            items.forEach(item => {
+                item.style.cursor = 'pointer';
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
                     
-                    <label style="font-size:11px; color:#ccc;">Số lượng (Min 1000):</label>
-                    <input type="number" id="qty-v" value="1000" style="width:100%; padding:8px; margin:5px 0 10px; border-radius:5px; border:1px solid #302b63; background:#0f0c29; color:white;">
-                    
-                    <button onclick="payNow(this, ${pricePer1k}, '${name}')" style="width:100%; background:#a855f7; color:white; border:none; padding:10px; border-radius:5px; font-weight:bold; cursor:pointer;">XÁC NHẬN & HIỆN MÃ QR</button>
-                    
-                    <div id="qr-area" style="display:none; text-align:center; margin-top:15px; border-top:1px solid #333; padding-top:10px;">
-                        <p style="color:#ff4d4d; font-size:12px; font-weight:bold;">⚠️ QUÉT MÃ ZALOPAY & CHỤP BILL</p>
-                        <img id="qr-img" src="" style="width:180px; margin:10px auto; border-radius:10px; background:white; padding:5px;">
-                        <p id="final-total" style="color:#2563eb; font-weight:bold; font-size:16px;"></p>
-                        <button onclick="donePay('${name}')" style="width:100%; background:#22c55e; color:white; border:none; padding:10px; border-radius:5px; font-weight:bold; margin-top:10px;">TÔI ĐÃ CHUYỂN KHOẢN XONG</button>
-                    </div>
+                    // Xóa form cũ nếu đang mở
+                    const oldForm = document.querySelector('.order-box');
+                    if (oldForm) oldForm.remove();
 
-                    <div id="copy-area" style="display:none; background:#000; padding:10px; margin-top:10px; border-radius:5px; border:1px dashed #22c55e;">
-                        <p style="color:#22c55e; font-size:11px; margin-bottom:5px;">✅ Hãy copy nội dung này gửi Zalo cho Tiến:</p>
-                        <textarea id="copy-text" style="width:100%; height:90px; background:transparent; color:white; border:none; font-size:12px; resize:none;" readonly></textarea>
-                        <button onclick="copyAndGoZalo()" style="width:100%; background:#0068ff; color:white; border:none; padding:10px; border-radius:5px; margin-top:5px; font-weight:bold;">COPY & MỞ ZALO</button>
-                    </div>
-                `;
-                this.after(orderBox);
+                    const name = this.querySelector('span:first-child').innerText;
+                    const priceText = this.querySelector('.price').innerText;
+                    const pricePer1k = parseInt(priceText.replace(/\D/g, '')) || 0;
+
+                    const orderBox = document.createElement('div');
+                    orderBox.className = 'order-box';
+                    orderBox.style = "background:#111; border:1px solid #a855f7; padding:15px; margin:10px; border-radius:12px; color:white; font-family:sans-serif;";
+                    
+                    orderBox.innerHTML = `
+                        <h4 style="color:#a855f7; margin:0 0 10px 0; font-size:15px;">🛒 Đặt hàng: ${name}</h4>
+                        <input type="text" id="link-v" placeholder="Dán link bài viết..." style="width:100%; padding:10px; margin-bottom:10px; border-radius:5px; border:1px solid #333; background:#000; color:white; box-sizing:border-box;">
+                        <input type="number" id="qty-v" value="1000" style="width:100%; padding:10px; margin-bottom:10px; border-radius:5px; border:1px solid #333; background:#000; color:white; box-sizing:border-box;">
+                        
+                        <button id="btn-confirm" style="width:100%; background:#a855f7; color:white; border:none; padding:12px; border-radius:5px; font-weight:bold; cursor:pointer;">XÁC NHẬN & HIỆN QR</button>
+                        
+                        <div id="qr-area" style="display:none; text-align:center; margin-top:15px; border-top:1px solid #333; padding-top:10px;">
+                            <p style="color:#ff4d4d; font-size:12px; font-weight:bold; margin-bottom:10px;">⚠️ QUÉT QR ZALOPAY & CHỤP BILL</p>
+                            <img id="qr-img" src="" style="width:200px; border-radius:10px; background:white; padding:5px;">
+                            <p id="final-total" style="color:#2563eb; font-weight:bold; font-size:18px; margin:10px 0;"></p>
+                            <button id="btn-done" style="width:100%; background:#22c55e; color:white; border:none; padding:12px; border-radius:5px; font-weight:bold;">TÔI ĐÃ CHUYỂN KHOẢN</button>
+                        </div>
+
+                        <div id="copy-area" style="display:none; background:#222; padding:10px; margin-top:10px; border-radius:5px; border:1px dashed #22c55e;">
+                            <p style="color:#22c55e; font-size:12px; margin-bottom:5px;">✅ Đã tạo đơn! Hãy copy gửi Zalo Tiến:</p>
+                            <textarea id="copy-text" style="width:100%; height:100px; background:transparent; color:white; border:none; font-size:12px; resize:none;" readonly></textarea>
+                            <button id="btn-copy" style="width:100%; background:#0068ff; color:white; border:none; padding:10px; border-radius:5px; margin-top:5px; font-weight:bold;">COPY & MỞ ZALO</button>
+                        </div>
+                    `;
+                    
+                    this.after(orderBox);
+
+                    // Xử lý nút Xác nhận
+                    orderBox.querySelector('#btn-confirm').onclick = function() {
+                        const link = document.getElementById('link-v').value;
+                        const qty = document.getElementById('qty-v').value;
+                        if(!link || qty <= 0) { alert("Nhập đủ link và số lượng nhé!"); return; }
+
+                        const total = (qty / 1000) * pricePer1k;
+                        const sdt = "0966181924";
+                        document.getElementById('qr-img').src = `https://img.vietqr.io/image/970439-${sdt}-compact2.jpg?amount=${total}&addInfo=Thanh toan ${name}`;
+                        document.getElementById('final-total').innerText = "Tổng: " + total.toLocaleString('vi-VN') + "đ";
+                        document.getElementById('qr-area').style.display = 'block';
+                        this.style.display = 'none';
+                    };
+
+                    // Xử lý nút Đã chuyển khoản
+                    orderBox.querySelector('#btn-done').onclick = function() {
+                        const link = document.getElementById('link-v').value;
+                        const qty = document.getElementById('qty-v').value;
+                        const total = document.getElementById('final-total').innerText;
+                        const content = `ĐƠN HÀNG: ${name}\nSỐ LƯỢNG: ${qty}\nLINK: ${link}\n${total}\nTRẠNG THÁI: ĐÃ CHUYỂN KHOẢN`;
+                        
+                        document.getElementById('qr-area').style.display = 'none';
+                        document.getElementById('copy-area').style.display = 'block';
+                        document.getElementById('copy-text').value = content;
+                    };
+
+                    // Xử lý nút Copy & Zalo
+                    orderBox.querySelector('#btn-copy').onclick = function() {
+                        const txt = document.getElementById('copy-text');
+                        txt.select();
+                        document.execCommand('copy');
+                        alert("Đã copy đơn hàng!");
+                        window.open("https://zalo.me/0966181924", "_blank");
+                    };
+                });
             });
         }
     });
 });
-
-function payNow(btn, price, name) {
-    const link = document.getElementById('link-v').value;
-    const qty = document.getElementById('qty-v').value;
-    if(!link || qty <= 0) { alert("Anh nhập đủ Link và Số lượng nhé!"); return; }
-
-    const total = (qty / 1000) * price;
-    const qrImg = document.getElementById('qr-img');
-    
-    // 970439 là mã ZaloPay, thay số điện thoại của anh vào đây
-    let sdtZaloPay = "0966181924"; 
-    qrImg.src = `https://img.vietqr.io/image/970439-${sdtZaloPay}-compact2.jpg?amount=${total}&addInfo=Thanh toan ${encodeURIComponent(name)}`;
-    
-    document.getElementById('final-total').innerText = "Tổng: " + total.toLocaleString() + "đ";
-    document.getElementById('qr-area').style.display = 'block';
-    btn.style.display = 'none';
-}
-
-function donePay(name) {
-    const link = document.getElementById('link-v').value;
-    const qty = document.getElementById('qty-v').value;
-    const total = document.getElementById('final-total').innerText;
-    
-    const content = `ĐƠN HÀNG MỚI\n──────────────\nDịch vụ: ${name}\nSố lượng: ${qty}\nLink: ${link}\n${total}\n──────────────\nTrạng thái: Đã CK, Tiến check đơn giúp mình!`;
-    
-    document.getElementById('qr-area').style.display = 'none';
-    document.getElementById('copy-area').style.display = 'block';
-    document.getElementById('copy-text').value = content;
-}
-
-function copyAndGoZalo() {
-    const copyText = document.getElementById('copy-text');
-    copyText.select();
-    document.execCommand("copy");
-    alert("Đã copy đơn hàng! Giờ anh dán vào Zalo gửi cho Tiến nhé.");
-    window.open("https://zalo.me/0966181924", "_blank");
-}
 </script>
-
-<style>
-@keyframes slideIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-</style>
 </body>
 </html>
