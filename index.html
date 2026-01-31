@@ -342,10 +342,9 @@
             <p class="mt-8 text-[8px] text-gray-600 uppercase tracking-[4px]">© 2026 NGUYEN NHAT TIEN</p>
         </div>
    <script>
-// 1. Xử lý khi nhấn vào mục TO (Tăng tương tác - thẻ Summary)
+// 1. Xử lý khi nhấn vào mục TO (Tăng tương tác)
 document.querySelectorAll('details summary').forEach(summary => {
     summary.addEventListener('click', function() {
-        // Chỉ hiện lưu ý nếu đó là mục Tăng Tương Tác
         if (this.innerText.includes('TĂNG TƯƠNG TÁC')) {
             const content = this.nextElementSibling;
             if (!content.querySelector('.note-chung')) {
@@ -353,30 +352,37 @@ document.querySelectorAll('details summary').forEach(summary => {
                 noteChung.className = 'note-chung';
                 noteChung.innerHTML = `
                     <p style="color: #ff4d4d; font-weight: bold; font-size: 13px; padding: 10px; border: 1px solid red; border-radius: 8px; margin-bottom: 10px; background: rgba(255,0,0,0.1);">
-                        🔴 CHÚ Ý CHUNG: Tất cả đơn tăng tương tác anh em vui lòng chuẩn bị sẵn LINK bài viết/profile trước khi nhắn Tiến!
+                        🔴 CHÚ Ý CHUNG: Nhấn vào tên các dịch vụ bên dưới để đặt đơn nhé.
                     </p>`;
-                content.prepend(noteChung); // Hiện ở đầu danh sách dịch vụ
+                content.prepend(noteChung);
             }
         }
     });
 });
 
-// 2. Xử lý khi nhấn vào từng dịch vụ NHỎ (thẻ Glass)
+// 2. Xử lý khi nhấn vào dịch vụ NHỎ (Tự ẩn cái cũ)
 document.querySelectorAll('.glass').forEach(item => {
     item.style.cursor = 'pointer';
     item.addEventListener('click', function() {
-        // Nếu đã hiện lưu ý rồi thì thôi không hiện nữa
-        if (this.nextElementSibling && this.nextElementSibling.classList.contains('note-rieng')) return;
+        // TÌM VÀ XÓA CÁI LƯU Ý CŨ ĐANG HIỆN (Nếu có)
+        const oldNote = document.querySelector('.note-rieng');
+        if (oldNote) {
+            oldNote.remove();
+        }
 
+        // Tạo lưu ý mới cho mục vừa nhấn
         const name = this.querySelector('span:first-child').innerText;
         const noteRieng = document.createElement('div');
         noteRieng.className = 'note-rieng';
         noteRieng.innerHTML = `
-            <div style="background: rgba(255, 255, 255, 0.05); border-left: 4px solid #ff4d4d; padding: 10px; margin: 5px 0 10px 10px; animation: fadeIn 0.5s forwards;">
-                <p style="color: #ff4d4d; font-size: 12px; font-weight: bold;">
-                    📌 Riêng mục "${name}": Vui lòng chụp bill chuyển khoản + gửi link qua Zalo ngay bên dưới.
+            <div style="background: rgba(255, 0, 0, 0.1); border-left: 4px solid #ff4d4d; padding: 10px; margin: 5px 0 10px 10px; animation: slideIn 0.3s ease-out;">
+                <p style="color: #ff4d4d; font-size: 12px; font-weight: bold; margin-bottom: 5px;">
+                    📌 Dịch vụ: ${name}
                 </p>
-                <a href="https://zalo.me/0966181924" target="_blank" style="color: #0068ff; font-size: 12px; font-weight: bold; text-decoration: underline;">Nhấn vào đây để gửi đơn cho Tiến</a>
+                <p style="color: white; font-size: 11px; margin-bottom: 8px;">Vui lòng chụp bill + gửi link qua Zalo ngay:</p>
+                <a href="https://zalo.me/0966181924" target="_blank" style="display: inline-block; background: #0068ff; color: white; padding: 5px 12px; border-radius: 5px; font-size: 11px; font-weight: bold; text-decoration: none;">
+                    Chuyển khoản đúng sô tiền tại mã QR trong mục nạp tiền,sau đó chụp bill rồi nhắn qua Zalo Admin và gửi các thông tin :Tên dịch vụ, tên nền tảng,link video,số lượng cần buff cuối cùng là gửi bill đã chụp trước đó.(Ví dụ:Tim ảo,Tiktok<https://abcd...,200 và gửi ảnh bill.
+                </a>
             </div>`;
         this.after(noteRieng);
     });
@@ -384,7 +390,11 @@ document.querySelectorAll('.glass').forEach(item => {
 </script>
 
 <style>
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+/* Hiệu ứng hiện ra nhẹ nhàng */
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-10px); }
+    to { opacity: 1; transform: translateX(0); }
+}
 </style>
 </body>
 </html>
