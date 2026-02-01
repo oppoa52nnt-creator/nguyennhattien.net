@@ -1,5 +1,6 @@
 
 
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -473,22 +474,7 @@ document.addEventListener('input', function (e) {
         }
     }
 });   
- // Tự động tính tiền khi khách nhập số lượng
-document.addEventListener('input', function (e) {
-    if (e.target.classList.contains('order-qty') || e.target.id === 'qty-v') {
-        const container = e.target.closest('div').parentElement;
-        const qty = parseFloat(e.target.value.replace(/\./g, '')) || 0;
-        const pricePer1k = parseFloat(container.dataset.price) || 0;
-        
-        const total = (qty / 1000) * pricePer1k;
-        
-        const finalTotalElement = container.querySelector('#final-total');
-        if (finalTotalElement) {
-            finalTotalElement.innerText = Math.round(total).toLocaleString('vi-VN') + "đ";
-        }
-    }
-});
-function confirmOrder(btn) {
+ function confirmOrder(btn) {
     const container = btn.parentElement;
     const qtyInput = container.querySelector('input[type="number"]').value;
     const qty = parseFloat(qtyInput.replace(/\./g, '')) || 0;
@@ -512,7 +498,11 @@ function confirmOrder(btn) {
     const qrArea = container.querySelector('#qr-area');
     if (qrArea) qrArea.style.display = 'block';
     btn.style.display = 'none';
-}
+}   
+</script>
+<style>
+.order-box { animation: fadeIn 0.4s ease-out; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 </style>
 </body>
 </html>
