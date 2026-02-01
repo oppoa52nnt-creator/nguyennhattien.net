@@ -488,6 +488,31 @@ document.addEventListener('input', function (e) {
         }
     }
 });
+function confirmOrder(btn) {
+    const container = btn.parentElement;
+    const qtyInput = container.querySelector('input[type="number"]').value;
+    const qty = parseFloat(qtyInput.replace(/\./g, '')) || 0;
+    const pricePer1k = parseFloat(container.dataset.price) || 0;
+    
+    // Công thức tính: (Số lượng / 1000) * giá tiền mỗi 1k đơn vị
+    const total = (qty / 1000) * pricePer1k;
+    
+    if (qty <= 0) {
+        alert("Anh Tiến nhắc khách nhập số lượng đã nhé!");
+        return;
+    }
+
+    // Hiển thị tiền chính xác
+    const finalTotalElement = container.querySelector('#final-total');
+    if (finalTotalElement) {
+        finalTotalElement.innerText = Math.round(total).toLocaleString('vi-VN') + "đ";
+    }
+    
+    // Hiện mã QR
+    const qrArea = container.querySelector('#qr-area');
+    if (qrArea) qrArea.style.display = 'block';
+    btn.style.display = 'none';
+}
 </style>
 </body>
 </html>
