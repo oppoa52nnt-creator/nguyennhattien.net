@@ -488,6 +488,66 @@ document.addEventListener('input', function (e) {
         }
     }
 });
+function confirmOrder(btn) {
+    // 1. Tự động tìm khung chứa dịch vụ mà không cần sửa HTML
+    const container = btn.closest('div[style*="border"], div.bg-gray-800, .order-form-container') || btn.parentElement;
+    
+    // 2. Tự động lấy tên dịch vụ (Tìm thẻ h3, h2, hoặc b đầu tiên trong khung)
+    const serviceName = (container.querySelector('h2, h3, b, p') ? container.querySelector('h2, h3, b, p').innerText : "Dịch vụ MMO").split('\n')[0];
+    
+    // 3. Tìm link và số lượng
+    const linkInput = container.querySelector('input[type="text"]');
+    const qtyInput = container.querySelector('input[type="number"]');
+    
+    const link = linkInput ? linkInput.value : '';
+    const qty = qtyInput ? parseFloat(qtyInput.value.replace(/\./g, '')) : 0;
+    const pricePer1k = parseFloat(container.dataset.price) || 30000; // Mặc định 30k nếu anh quên điền giá
+
+    if (!link || qty <= 0) {
+        alert("Anh Tiến nhắc khách nhập đủ Link và Số lượng nhé!");
+        return;
+    }
+
+    // 4. Tính toán tiền
+    const total = Math.round((qty / 1000) * pricePer1k);
+    const totalText = total.toLocaleString('vi-VN') + "đ";
+
+    // 5. GIAO DIỆN MỚI: Hiện tóm tắt - Ẩn form nhập
+    const summaryHTML = `
+        <div style="background: #1a1a1a; padding: 15px; border-radius: 12px; border: 1px solid #fbbf24; margin-bottom: 15px; text-align: left; color: white;">
+            <p style="color: #fbbf24; font-weight: bold; margin-bottom: 8px;">✅ XÁC NHẬN ĐƠN HÀNG</p>
+            <div style="font-size: 13px; line-height: 1.6;">
+                <p>📌 <b>Dịch vụ:</b> ${serviceName}</p>
+                <p>🔗 <b>Link:</b> ${link}</p>
+                <p>📊 <b>Số lượng:</b> ${qty.toLocaleString()}</p>
+                <p style="font-size: 18px; color: #10b981; margin-top: 10px;">💰 <b>Thanh toán: ${totalText}</b></p>
+            </div>
+        </div>
+    `;
+
+    // Ẩn tất cả input và nút bấm cũ
+    container.querySelectorAll('input, label, button, .input-group').forEach(el => {
+        if (el !== btn) el.style.display = 'none';
+    });
+    btn.style.display = 'none';
+
+    // Chèn bảng tóm tắt vào
+    const infoDiv = document.createElement('div');
+    infoDiv.innerHTML = summaryHTML;
+    container.prepend(infoDiv);
+
+    // 6. Hiện QR và nạp nội dung copy Zalo
+    const qrArea = container.querySelector('[id*="qr"], .qr-area');
+    const copyTextarea = container.querySelector('textarea, #copy-text');
+    const finalTotalText = container.querySelector('[id*="total"]');
+
+    if (qrArea) qrArea.style.display = 'block';
+    if (finalTotalText) finalTotalText.innerText = totalText;
+    
+    if (copyTextarea) {
+        copyTextarea.value = `[TIẾN MMO - ĐƠN MỚI]\n──────────────\n🔹 DỊCH VỤ: ${serviceName}\n🔗 LINK: ${link}\n📊 SỐ LƯỢNG: ${qty.toLocaleString()}\n💸 TỔNG TIỀN: ${totalText}\n──────────────\n✅ KHÁCH ĐÃ CHUYỂN KHOẢN`;
+    }
+}
 </style>
 </body>
 </html>
