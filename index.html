@@ -458,6 +458,21 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+  // Tự động tính tiền khi khách nhập số lượng
+document.addEventListener('input', function (e) {
+    if (e.target.classList.contains('order-qty') || e.target.id === 'qty-v') {
+        const container = e.target.closest('div').parentElement;
+        const qty = parseFloat(e.target.value.replace(/\./g, '')) || 0;
+        const pricePer1k = parseFloat(container.dataset.price) || 0;
+        
+        const total = (qty / 1000) * pricePer1k;
+        
+        const finalTotalElement = container.querySelector('#final-total');
+        if (finalTotalElement) {
+            finalTotalElement.innerText = Math.round(total).toLocaleString('vi-VN') + "đ";
+        }
+    }
+});   
  function confirmOrder(btn) {
     const container = btn.parentElement;
     const qtyInput = container.querySelector('input[type="number"]').value;
