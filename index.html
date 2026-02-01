@@ -473,59 +473,21 @@ document.addEventListener('input', function (e) {
         }
     }
 });   
- function confirmOrder(btn) {
-    const container = btn.parentElement;
-    
-    // 1. Lấy dữ liệu khách đã nhập
-    const platformName = "DỊCH VỤ"; // Bạn có thể thay đổi linh hoạt nếu cần
-    const serviceName = container.querySelector('h3')?.innerText || "Dịch vụ";
-    const link = container.querySelector('input[type="text"]').value;
-    const qtyInput = container.querySelector('input[type="number"]').value;
-    const qty = parseFloat(qtyInput.replace(/\./g, '')) || 0;
-    const pricePer1k = parseFloat(container.dataset.price) || 0;
-    
-    if (!link || qty <= 0) {
-        alert("Vui lòng nhập đầy đủ Link và Số lượng anh Tiến ơi!");
-        return;
+ // Tự động tính tiền khi khách nhập số lượng
+document.addEventListener('input', function (e) {
+    if (e.target.classList.contains('order-qty') || e.target.id === 'qty-v') {
+        const container = e.target.closest('div').parentElement;
+        const qty = parseFloat(e.target.value.replace(/\./g, '')) || 0;
+        const pricePer1k = parseFloat(container.dataset.price) || 0;
+        
+        const total = (qty / 1000) * pricePer1k;
+        
+        const finalTotalElement = container.querySelector('#final-total');
+        if (finalTotalElement) {
+            finalTotalElement.innerText = Math.round(total).toLocaleString('vi-VN') + "đ";
+        }
     }
-
-    // 2. Tính tiền
-    const total = Math.round((qty / 1000) * pricePer1k);
-    const totalText = total.toLocaleString('vi-VN') + "đ";
-
-    // 3. Tạo nội dung tóm tắt để hiện ra thay thế cái form
-    const summaryHTML = `
-        <div class="summary-box" style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; margin-bottom: 15px; border: 1px dashed #f59e0b;">
-            <p style="color: #fbbf24; font-weight: bold; margin-bottom: 5px;">✅ THÔNG TIN ĐƠN HÀNG:</p>
-            <p style="font-size: 13px;">📌 Dịch vụ: <span style="color: #fff;">[${serviceName}]</span></p>
-            <p style="font-size: 13px;">🔗 Link: <span style="color: #fff;">${link}</span></p>
-            <p style="font-size: 13px;">📊 Số lượng: <span style="color: #fff;">${qty.toLocaleString()}</span></p>
-            <p style="font-size: 18px; font-weight: bold; margin-top: 10px;">💰 CẦN THANH TOÁN: <span style="color: #10b981;">${totalText}</span></p>
-        </div>
-    `;
-
-    // 4. Ẩn các ô nhập liệu (Form)
-    container.querySelectorAll('.input-group, label, input, .order-qty').forEach(el => el.style.display = 'none');
-    btn.style.display = 'none';
-
-    // 5. Chèn thông tin tóm tắt và hiện QR
-    const infoDisplay = document.createElement('div');
-    infoDisplay.innerHTML = summaryHTML;
-    container.prepend(infoDisplay);
-
-    // Hiện khu vực QR và Copy
-    const qrArea = container.querySelector('#qr-area');
-    const finalTotalElement = container.querySelector('#final-total');
-    const copyTextarea = container.querySelector('#copy-text');
-
-    if (finalTotalElement) finalTotalElement.innerText = totalText;
-    if (qrArea) qrArea.style.display = 'block';
-
-    // 6. Cập nhật nội dung Copy Zalo (Thêm tên nền tảng)
-    if (copyTextarea) {
-        copyTextarea.value = `THÔNG TIN ĐẶT HÀNG\n------------------\nNền tảng: ${serviceName}\nLink: ${link}\nSố lượng: ${qty.toLocaleString()}\nThành tiền: ${totalText}\nTrạng thái: Đã chuyển khoản`;
-    }
-}
+});
 </style>
 </body>
 </html>
