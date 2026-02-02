@@ -1,6 +1,7 @@
 
 
 
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -466,21 +467,35 @@ document.addEventListener('input', function (e) {
         const qty = parseFloat(e.target.value.replace(/\./g, '')) || 0;
         const pricePer1k = parseFloat(container.dataset.price) || 0;
         
-// 1. Lấy số lượng và giá (Bước này fix lỗi 1000 ra giá của 3)
-    const qtyInput = container.querySelector('.order-qty') || container.querySelector('input[type="number"]');
-    const qty = parseFloat(qtyInput.value.replace(/\./g, '')) || 0;
+        const total = (qty / 1000) * pricePer1k;
+        
+        const finalTotalElement = container.querySelector('#final-total');
+        if (finalTotalElement) {
+            finalTotalElement.innerText = Math.round(total).toLocaleString('vi-VN') + "đ";
+        }
+    }
+});   
+ function confirmOrder(btn) {
+    const container = btn.parentElement;
+    const qtyInput = container.querySelector('input[type="number"]').value;
+    const qty = parseFloat(qtyInput.replace(/\./g, '')) || 0;
     const pricePer1k = parseFloat(container.dataset.price) || 0;
     
-
-    // 2. Ẩn form (Bước này để khách không sửa lại được nữa)
-    container.querySelectorAll('.input-group, input, label, .description').forEach(el => el.style.display = 'none');
-   // 3. Hiện số tiền và QR
+    // Công thức tính: (Số lượng / 1000) * giá tiền mỗi 1k đơn vị
+   // Công thức chuẩn: Lấy số lượng chia 1000 rồi nhân với giá
+const qty = parseFloat(container.querySelector('.order-qty').value.replace(/\./g, '')) || 0;
+const pricePer1k = parseFloat(container.dataset.price) || 0;
+const total = (qty / 1000) * pricePer1k;
+     // Ẩn các ô nhập để khách không sửa lung tung
+container.querySelectorAll('.input-group, input, label').forEach(el => el.style.display = 'none');
+    // 4. Hiện số tiền và QR
     const finalTotal = container.querySelector('#final-total') || container.querySelector('.final-total');
     if (finalTotal) finalTotal.innerText = totalText;
     
     const qrArea = container.querySelector('#qr-area') || container.querySelector('.qr-area');
     if (qrArea) qrArea.style.display = 'block';
     btn.style.display = 'none';
+}   
 </script>
 <style>
 .order-box { animation: fadeIn 0.4s ease-out; }
