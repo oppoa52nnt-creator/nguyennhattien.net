@@ -351,13 +351,21 @@ document.addEventListener('DOMContentLoaded', function() {
     details.forEach(detail => {
         const summary = detail.querySelector('summary');
         
-        // Chỉ kích hoạt trong mục TĂNG TƯƠNG TÁC
+        <script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 1. Tìm tất cả các mục dịch vụ
+    const details = document.querySelectorAll('details');
+    
+    details.forEach(detail => {
+        const summary = detail.querySelector('summary');
+        
+        // Chỉ kích hoạt trong mục có chữ TĂNG TƯƠNG TÁC hoặc dịch vụ của anh
         if (summary && summary.innerText.toUpperCase().includes('TĂNG TƯƠNG TÁC')) {
             
-            // 1. Thêm lưu ý chung khi mở mục ra
+            // Thêm lưu ý khi mở mục
             summary.addEventListener('click', function() {
                 const content = this.nextElementSibling;
-                if (!content.querySelector('.note-chung')) {
+                if (content && !content.querySelector('.note-chung')) {
                     const noteChung = document.createElement('div');
                     noteChung.className = 'note-chung';
                     noteChung.innerHTML = `
@@ -368,91 +376,104 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
 
-            // 2. Xử lý khi nhấn vào từng dịch vụ (glass)
+            // 2. Xử lý khi nhấn vào từng dòng dịch vụ (.glass)
             const items = detail.querySelectorAll('.glass');
             items.forEach(item => {
                 item.style.cursor = 'pointer';
                 item.addEventListener('click', function(e) {
                     e.preventDefault();
                     
-                    // Xóa form cũ nếu đang mở ở chỗ khác
+                    // Xóa form cũ nếu đang mở
                     const oldForm = document.querySelector('.order-box');
                     if (oldForm) oldForm.remove();
 
                     const name = this.querySelector('span:first-child').innerText;
                     const priceText = this.querySelector('.price').innerText;
                     const pricePer1k = parseInt(priceText.replace(/\D/g, '')) || 0;
+                    
+                    // Lấy tên nền tảng từ tiêu đề lớn (ví dụ: FACEBOOK, TIKTOK)
+                    const platform = summary.innerText.split('-')[0].trim();
 
                     const orderBox = document.createElement('div');
                     orderBox.className = 'order-box';
                     orderBox.style = "background:#0f172a; border:2px solid #a855f7; padding:15px; margin:10px; border-radius:15px; color:white; font-family:sans-serif; box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);";
                     
                     orderBox.innerHTML = `
-                        <h4 style="color:#a855f7; margin:0 0 12px 0; font-size:16px; border-bottom:1px solid #1e293b; padding-bottom:5px;">🛒 Đặt hàng: ${name}</h4>
-                        
-                        <div style="margin-bottom:10px;">
-                            <label style="font-size:12px; color:#94a3b8;">Dán Link (bài viết/trang cá nhân):</label>
-                            <input type="text" id="link-v" placeholder="https://facebook.com/..." style="width:100%; padding:10px; margin-top:5px; border-radius:8px; border:1px solid #334155; background:#020617; color:white; box-sizing:border-box;">
+                        <div id="form-input-area">
+                            <h4 style="color:#a855f7; margin:0 0 12px 0; font-size:16px; border-bottom:1px solid #1e293b; padding-bottom:5px;">🛒 Đặt hàng: ${name}</h4>
+                            <div style="margin-bottom:10px;">
+                                <label style="font-size:12px; color:#94a3b8;">Dán Link bài viết/trang cá nhân:</label>
+                                <input type="text" id="link-v" placeholder="https://..." style="width:100%; padding:10px; margin-top:5px; border-radius:8px; border:1px solid #334155; background:#020617; color:white; box-sizing:border-box;">
+                            </div>
+                            <div style="margin-bottom:15px;">
+                                <label style="font-size:12px; color:#94a3b8;">Số lượng cần tăng:</label>
+                                <input type="number" id="qty-v" value="1000" style="width:100%; padding:10px; margin-top:5px; border-radius:8px; border:1px solid #334155; background:#020617; color:white; box-sizing:border-box;">
+                            </div>
+                            <button id="btn-confirm" style="width:100%; background:linear-gradient(90deg, #a855f7, #7c3aed); color:white; border:none; padding:12px; border-radius:8px; font-weight:bold; cursor:pointer; font-size:14px;">XÁC NHẬN & THANH TOÁN</button>
                         </div>
 
-                        <div style="margin-bottom:15px;">
-                            <label style="font-size:12px; color:#94a3b8;">Số lượng cần tăng:</label>
-                            <input type="number" id="qty-v" value="1000" step="100" style="width:100%; padding:10px; margin-top:5px; border-radius:8px; border:1px solid #334155; background:#020617; color:white; box-sizing:border-box;">
-                        </div>
-                        
-                        <button id="btn-confirm" style="width:100%; background:linear-gradient(90deg, #a855f7, #7c3aed); color:white; border:none; padding:12px; border-radius:8px; font-weight:bold; cursor:pointer; font-size:14px;">XÁC NHẬN & THANH TOÁN</button>
-                        
-                        <div id="qr-area" style="display:none; text-align:center; margin-top:15px; border-top:1px solid #1e293b; padding-top:15px;">
-                            <p style="color:#f87171; font-size:12px; font-weight:bold; margin-bottom:10px;">Lưu QR để chuyển khoản và Chụp bill khi chuyển khoản thành công</p>
-                            <img id="qr-img" src="qrzalo.jpg" style="width:220px; border-radius:12px; border: 4px solid white; background:white;">
+                        <div id="qr-area" style="display:none; text-align:center; margin-top:5px;">
+                            <div id="order-summary-text" style="background:rgba(255,255,255,0.05); padding:10px; border-radius:10px; margin-bottom:15px; text-align:left; font-size:13px; border: 1px dashed #4ade80;">
+                                </div>
+                            <p style="color:#f87171; font-size:12px; font-weight:bold; margin-bottom:10px;">Lưu QR để chuyển khoản và Chụp bill</p>
+                            <img id="qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=YOUR_QR_INFO" style="width:220px; border-radius:12px; border: 4px solid white;">
                             <div style="background:#1e293b; padding:12px; border-radius:10px; margin:15px 0;">
-                                <p style="font-size:13px; color:#cbd5e1; margin:0;">Tổng số tiền cần chuyển:</p>
+                                <p style="font-size:13px; color:#cbd5e1; margin:0;">Số tiền cần chuyển:</p>
                                 <p id="final-total" style="color:#4ade80; font-weight:bold; font-size:24px; margin:5px 0;"></p>
-                                <p style="font-size:10px; color:#94a3b8;">(Vui lòng nhập đúng số tiền khi chuyển khoản)</p>
                             </div>
-                            <button id="btn-done" style="width:100%; background:#22c55e; color:white; border:none; padding:12px; border-radius:8px; font-weight:bold; cursor:pointer;">ĐÃ THANH TOÁN</button>
+                            <button id="btn-done" style="width:100%; background:#22c55e; color:white; border:none; padding:12px; border-radius:8px; font-weight:bold; cursor:pointer;">TÔI ĐÃ CHUYỂN TIỀN THÀNH CÔNG</button>
                         </div>
 
                         <div id="copy-area" style="display:none; background:#020617; padding:15px; margin-top:15px; border-radius:10px; border:1px dashed #22c55e;">
-                            <p style="color:#4ade80; font-size:12px; margin-bottom:8px; font-weight:bold;">✅ BƯỚC CUỐI: Copy nội dung này gửi Zalo</p>
-                            <textarea id="copy-text" style="width:100%; height:110px; background:transparent; color:#e2e8f0; border:none; font-size:13px; resize:none; font-family:monospace;" readonly></textarea>
-                            <button id="btn-copy" style="width:100%; background:#0068ff; color:white; border:none; padding:12px; border-radius:8px; margin-top:10px; font-weight:bold; cursor:pointer;">COPY & NHẮN ZALO CHO TIẾN</button>
+                            <textarea id="copy-text" style="width:100%; height:110px; background:transparent; color:#e2e8f0; border:none; font-size:13px; resize:none;" readonly></textarea>
+                            <button id="btn-copy" style="width:100%; background:#0068ff; color:white; border:none; padding:12px; border-radius:8px; margin-top:10px; font-weight:bold; cursor:pointer;">COPY & GỬI QUA ZALO</button>
                         </div>
                     `;
                     
                     this.after(orderBox);
 
-                    // Nút xác nhận hiện QR
+                    // XỬ LÝ NÚT XÁC NHẬN
                     orderBox.querySelector('#btn-confirm').onclick = function() {
-                        const link = document.getElementById('link-v').value;
-                        const qty = document.getElementById('qty-v').value;
-                        if(!link || qty <= 0) { alert("Anh ơi, nhập đầy đủ Link và Số lượng đã nhé!"); return; }
+                        const link = orderBox.querySelector('#link-v').value;
+                        const qty = orderBox.querySelector('#qty-v').value;
+                        if(!link || qty <= 0) { alert("Vui lòng nhập đủ Link và Số lượng!"); return; }
 
                         const total = (qty / 1000) * pricePer1k;
-                        document.getElementById('final-total').innerText = total.toLocaleString('vi-VN') + "đ";
-                        document.getElementById('qr-area').style.display = 'block';
-                        this.style.display = 'none';
-                        orderBox.scrollIntoView({ behavior: 'smooth' });
+                        const totalText = total.toLocaleString('vi-VN') + "đ";
+
+                        // 1. Hiện thông tin tóm tắt dạng văn bản
+                        orderBox.querySelector('#order-summary-text').innerHTML = `
+                            <p>📌 <b>Nền tảng:</b> ${platform}</p>
+                            <p>🔹 <b>Dịch vụ:</b> ${name}</p>
+                            <p>📊 <b>Số lượng:</b> ${parseInt(qty).toLocaleString()}</p>
+                            <p>🔗 <b>Link:</b> ${link}</p>
+                        `;
+
+                        // 2. Hiện số tiền và QR
+                        orderBox.querySelector('#final-total').innerText = totalText;
+                        orderBox.querySelector('#form-input-area').style.display = 'none'; // Xóa (ẩn) form nhập
+                        orderBox.querySelector('#qr-area').style.display = 'block';
                     };
 
-                    // Nút báo đã chuyển khoản
+                    // XỬ LÝ NÚT ĐÃ THANH TOÁN
                     orderBox.querySelector('#btn-done').onclick = function() {
-                        const link = document.getElementById('link-v').value;
-                        const qty = document.getElementById('qty-v').value;
-                        const total = document.getElementById('final-total').innerText;
-                        const content = `[ĐƠN HÀNG MỚI]\n──────────────\nDịch vụ: ${name}\nSố lượng: ${qty}\nLink: ${link}\nTổng tiền: ${total}\n──────────────\nTrạng thái: ĐÃ CHUYỂN KHOẢN , TIẾN CHECK GIÚP!`;
+                        const link = orderBox.querySelector('#link-v').value;
+                        const qty = orderBox.querySelector('#qty-v').value;
+                        const total = orderBox.querySelector('#final-total').innerText;
                         
-                        document.getElementById('qr-area').style.display = 'none';
-                        document.getElementById('copy-area').style.display = 'block';
-                        document.getElementById('copy-text').value = content;
+                        const content = `[ĐƠN HÀNG MỚI]\nNền tảng: ${platform}\nDịch vụ: ${name}\nSố lượng: ${qty}\nLink: ${link}\nTổng tiền: ${total}\n──────────────\nTrạng thái: ĐÃ CHUYỂN KHOẢN!`;
+                        
+                        orderBox.querySelector('#qr-area').style.display = 'none';
+                        orderBox.querySelector('#copy-area').style.display = 'block';
+                        orderBox.querySelector('#copy-text').value = content;
                     };
 
-                    // Nút copy và mở Zalo
+                    // XỬ LÝ NÚT COPY
                     orderBox.querySelector('#btn-copy').onclick = function() {
-                        const txt = document.getElementById('copy-text');
+                        const txt = orderBox.querySelector('#copy-text');
                         txt.select();
                         document.execCommand('copy');
-                        alert("Đã copy thông tin đơn hàng! Đang mở Zalo của Tiến...");
+                        alert("Đã copy! Đang mở Zalo...");
                         window.open("https://zalo.me/0966181924", "_blank");
                     };
                 });
@@ -460,46 +481,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-  // Tự động tính tiền khi khách nhập số lượng
-document.addEventListener('input', function (e) {
-    if (e.target.classList.contains('order-qty') || e.target.id === 'qty-v') {
-        const container = e.target.closest('div').parentElement;
-        const qty = parseFloat(e.target.value.replace(/\./g, '')) || 0;
-        const pricePer1k = parseFloat(container.dataset.price) || 0;
-        
-        const total = (qty / 1000) * pricePer1k;
-        
-        const finalTotalElement = container.querySelector('#final-total');
-        if (finalTotalElement) {
-            finalTotalElement.innerText = Math.round(total).toLocaleString('vi-VN') + "đ";
-        }
-    }
-});   
- function confirmOrder(btn) {
-    const container = btn.parentElement;
-    const qtyInput = container.querySelector('input[type="number"]').value;
-    const qty = parseFloat(qtyInput.replace(/\./g, '')) || 0;
-    const pricePer1k = parseFloat(container.dataset.price) || 0;
-    
-    // Công thức tính: (Số lượng / 1000) * giá tiền mỗi 1k đơn vị
-   // Công thức chuẩn: Lấy số lượng chia 1000 rồi nhân với giá
-const qty = parseFloat(container.querySelector('.order-qty').value.replace(/\./g, '')) || 0;
-const pricePer1k = parseFloat(container.dataset.price) || 0;
-const total = (qty / 1000) * pricePer1k;
-     // Ẩn các ô nhập để khách không sửa lung tung
-container.querySelectorAll('.input-group, input, label').forEach(el => el.style.display = 'none');
-    // 4. Hiện số tiền và QR
-    const finalTotal = container.querySelector('#final-total') || container.querySelector('.final-total');
-    if (finalTotal) finalTotal.innerText = totalText;
-    
-    const qrArea = container.querySelector('#qr-area') || container.querySelector('.qr-area');
-    if (qrArea) qrArea.style.display = 'block';
-    btn.style.display = 'none';
-}   
 </script>
+
 <style>
-.order-box { animation: fadeIn 0.4s ease-out; }
+.order-box { animation: fadeIn 0.4s ease-out; margin-top: 10px !important; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+.glass { transition: all 0.2s; }
+.glass:hover { background: rgba(255,255,255,0.1); }
 </style>
 </body>
 </html>
