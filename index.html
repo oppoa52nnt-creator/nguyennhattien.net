@@ -3,150 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giao diện Đặt Hàng - TUONGTACTG</title>
+    <title>Hệ thống Dịch vụ - TUONGTACTG</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
         body { background-color: #f8fafc; font-family: 'Inter', sans-serif; }
-        .dropdown-menu { display: none; position: absolute; width: 100%; z-index: 100; background: white; border: 1px solid #e2e8f0; border-radius: 8px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); margin-top: 4px; overflow: hidden; }
-        .dropdown-menu.show { display: block; animation: fadeIn 0.2s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
-        .dropdown-item { padding: 12px 16px; display: flex; items-center; gap: 12px; cursor: pointer; transition: background 0.2s; font-size: 14px; color: #475569; }
-        .dropdown-item:hover { background-color: #f1f5f9; }
-        .dropdown-item i { width: 20px; text-align: center; }
+        .dropdown-menu { display: none; position: absolute; width: 100%; z-index: 100; background: white; border: 1px solid #e2e8f0; border-radius: 12px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); margin-top: 5px; overflow: hidden; }
+        .dropdown-menu.show { display: block; animation: slideDown 0.2s ease-out; }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        .dropdown-item { padding: 12px 16px; cursor: pointer; transition: all 0.2s; font-size: 14px; color: #475569; display: flex; items-center; gap: 10px; border-bottom: 1px solid #f1f5f9; }
+        .dropdown-item:last-child { border-bottom: none; }
+        .dropdown-item:hover { background-color: #f0fdf4; }
     </style>
 </head>
-<body>
+<body class="p-4 lg:p-10">
 
-    <div class="max-w-md mx-auto p-4 lg:max-w-5xl lg:flex lg:gap-8 lg:mt-10">
+    <div class="max-w-2xl mx-auto bg-white rounded-3xl shadow-sm border border-gray-100 p-6 space-y-6">
         
-        <div class="flex-1">
-            <div class="bg-green-50 border border-green-100 rounded-xl p-4 mb-6">
-                <ul class="text-[13px] space-y-1 font-medium">
-                    <li class="text-red-500">1. Zalo Hỗ Trợ: <span class="text-green-600">037 8047 233</span></li>
-                    <li class="text-red-500">2. Telegram: <span class="text-green-600">@vtgiang8386</span></li>
-                    <li class="text-red-500">3. Điều Khoản: <span class="text-green-600 underline">Tại Đây</span></li>
-                    <li class="text-red-500">5. Video Hướng Dẫn: <span class="text-green-600 underline">Xem Video</span></li>
-                </ul>
-            </div>
-
-            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 space-y-5">
-                
-                <div class="relative" id="platform-section">
-                    <label class="block text-xs font-bold text-gray-400 uppercase mb-2">Nền tảng</label>
-                    <button onclick="toggleDropdown('platform-list')" class="w-full flex items-center justify-between p-3.5 bg-gray-50 border border-gray-200 rounded-xl text-sm hover:border-blue-400 transition-all">
-                        <div id="platform-selected" class="flex items-center gap-2 font-semibold text-gray-700">
-                            <i class="fa-brands fa-tiktok text-black"></i> TIKTOK
-                        </div>
-                        <i class="fa-solid fa-chevron-down text-gray-400 text-[10px]"></i>
-                    </button>
-                    <div id="platform-list" class="dropdown-menu">
-                        <div class="dropdown-item" onclick="selectItem('platform', 'TIKTOK', 'fa-brands fa-tiktok', 'text-black')">
-                            <i class="fa-brands fa-tiktok text-black"></i> <span class="font-bold text-green-500 uppercase">TIKTOK</span>
-                        </div>
-                        <div class="dropdown-item" onclick="selectItem('platform', 'Facebook', 'fa-brands fa-facebook', 'text-blue-600')">
-                            <i class="fa-brands fa-facebook text-blue-600"></i> Facebook
-                        </div>
-                        <div class="dropdown-item" onclick="selectItem('platform', 'Instagram', 'fa-brands fa-instagram', 'text-pink-500')">
-                            <i class="fa-brands fa-instagram text-pink-500"></i> Instagram
-                        </div>
-                        <div class="dropdown-item" onclick="selectItem('platform', 'Youtube', 'fa-brands fa-youtube', 'text-red-600')">
-                            <i class="fa-brands fa-youtube text-red-600"></i> Youtube
-                        </div>
-                        <div class="dropdown-item" onclick="selectItem('platform', 'Telegram', 'fa-brands fa-telegram', 'text-blue-400')">
-                            <i class="fa-brands fa-telegram text-blue-400"></i> Telegram
-                        </div>
-                    </div>
+        <div class="relative">
+            <label class="block text-xs font-bold text-gray-400 uppercase mb-2 ml-1">Nền tảng</label>
+            <button onclick="toggleDropdown('list-platform')" class="w-full flex items-center justify-between p-4 bg-gray-50 border border-gray-100 rounded-2xl text-sm">
+                <div id="selected-platform" class="flex items-center gap-2 font-bold text-gray-700">
+                    <i class="fa-brands fa-tiktok text-black"></i> TIKTOK
                 </div>
+                <i class="fa-solid fa-chevron-down text-gray-400 text-[10px]"></i>
+            </button>
+            <div id="list-platform" class="dropdown-menu">
+                <div class="dropdown-item" onclick="selectItem('platform', 'TIKTOK', 'fa-brands fa-tiktok', 'text-black')">
+                    <i class="fa-brands fa-tiktok text-black"></i> <span class="font-bold text-green-600 uppercase">TIKTOK</span>
+                </div>
+                <div class="dropdown-item" onclick="selectItem('platform', 'Facebook', 'fa-brands fa-facebook', 'text-blue-600')">
+                    <i class="fa-brands fa-facebook text-blue-600"></i> <span class="font-medium">Facebook</span>
+                </div>
+            </div>
+        </div>
 
+        <div class="relative">
+            <label class="block text-xs font-bold text-gray-400 uppercase mb-2 ml-1">Phân loại</label>
+            <button onclick="toggleDropdown('list-category')" class="w-full flex items-center justify-between p-4 bg-gray-50 border border-gray-100 rounded-2xl text-sm">
+                <div id="selected-category" class="flex items-center gap-2 font-medium text-gray-700">
+                    🎬 TikTok | Mắt Xem 👁️
+                </div>
+                <i class="fa-solid fa-chevron-down text-gray-400 text-[10px]"></i>
+            </button>
+            <div id="list-category" class="dropdown-menu">
+                <div class="dropdown-item" onclick="selectItem('category', '🎬 TikTok | Mắt Xem 👁️')">🎬 TikTok | Mắt Xem 👁️</div>
+                <div class="dropdown-item" onclick="selectItem('category', '❤️ TikTok | Like ❤️')">❤️ TikTok | Like ❤️</div>
+            </div>
+        </div>
+
+        <div class="relative">
+            <label class="block text-xs font-bold text-gray-400 uppercase mb-2 ml-1">Dịch vụ</label>
+            <button onclick="toggleDropdown('list-service')" class="w-full flex items-center justify-between p-4 bg-gray-50 border border-gray-100 rounded-2xl text-sm">
+                <div id="selected-service" class="flex items-center gap-2 font-medium text-gray-600 leading-snug">
+                    🚀 6450 - TikTok Views | Max 1B - [ 86 VND ]
+                </div>
+                <i class="fa-solid fa-chevron-down text-gray-400 text-[10px]"></i>
+            </button>
+            <div id="list-service" class="dropdown-menu max-h-60 overflow-y-auto">
+                <div class="dropdown-item" onclick="selectItem('service', '🚀 6450 - TikTok Views | 86 VND')">🚀 6450 - TikTok Views | 86 VND</div>
+                <div class="dropdown-item" onclick="selectItem('service', '🔥 7000 - TikTok Like | 150 VND')">🔥 7000 - TikTok Like | 150 VND</div>
+                <div class="dropdown-item" onclick="selectItem('service', '⚡ 8888 - TikTok Share | 50 VND')">⚡ 8888 - TikTok Share | 50 VND</div>
+            </div>
+        </div>
+
+        <div class="p-5 bg-gray-50 rounded-3xl border border-dashed border-gray-200 space-y-5">
+            <div>
+                <label class="block text-sm font-bold mb-2 ml-1">Liên kết</label>
+                <input type="text" class="w-full p-4 bg-white border border-gray-100 rounded-2xl outline-none focus:ring-2 focus:ring-green-400 transition-all" placeholder="Dán liên kết...">
+            </div>
+            <div>
+                <label class="block text-sm font-bold mb-2 ml-1">Số lượng</label>
                 <div class="relative">
-                    <label class="block text-xs font-bold text-gray-400 uppercase mb-2">Phân loại</label>
-                    <button onclick="toggleDropdown('cat-list')" class="w-full flex items-center justify-between p-3.5 bg-gray-50 border border-gray-200 rounded-xl text-sm">
-                        <div id="cat-selected" class="flex items-center gap-2 text-gray-700 font-medium">
-                            <i class="fa-brands fa-tiktok text-black"></i> TikTok | Mắt Xem 👁️
-                        </div>
-                        <i class="fa-solid fa-chevron-down text-gray-400 text-[10px]"></i>
-                    </button>
-                    <div id="cat-list" class="dropdown-menu">
-                        <div class="dropdown-item" onclick="selectItem('cat', 'TikTok | Mắt Xem 👁️', 'fa-brands fa-tiktok', 'text-black')">
-                             <i class="fa-brands fa-tiktok"></i> TikTok | Mắt Xem 👁️
-                        </div>
-                        <div class="dropdown-item" onclick="selectItem('cat', 'TikTok | Like ❤️', 'fa-brands fa-tiktok', 'text-black')">
-                            <i class="fa-brands fa-tiktok"></i> TikTok | Like ❤️
-                        </div>
-                    </div>
-                </div>
-
-                <div class="p-4 bg-gray-50 rounded-2xl border border-dashed border-gray-200 space-y-4">
-                    <div>
-                        <label class="block text-sm font-bold mb-2">Liên kết</label>
-                        <input type="text" class="w-full p-3 bg-white border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-green-400" placeholder="Dán link video/profile...">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold mb-2">Số lượng</label>
-                        <div class="relative">
-                            <input type="number" class="w-full p-3 bg-white border border-gray-200 rounded-lg outline-none" placeholder="1000">
-                            <span class="absolute right-3 top-2.5 bg-green-500 text-white text-[10px] px-2 py-1 rounded font-bold uppercase">0 VND</span>
-                        </div>
-                        <p class="text-[10px] text-gray-400 mt-2">Tối thiểu: 1000 - Tối đa: 1.000.000.000</p>
-                    </div>
-                </div>
-
-                <button class="w-full bg-green-500 text-white font-bold py-4 rounded-xl shadow-lg shadow-green-200 hover:bg-green-600 transition-all uppercase tracking-wider">
-                    Đặt hàng ngay
-                </button>
-            </div>
-        </div>
-
-        <div class="hidden lg:block w-80">
-            <div class="bg-white border rounded-2xl p-6 sticky top-10">
-                <div class="text-center pb-6 border-b">
-                    <h2 class="text-3xl font-black text-green-500">6450</h2>
-                    <p class="text-sm font-bold text-gray-600 uppercase mt-1">TikTok Views | Max 1B</p>
-                    <div class="text-4xl mt-3">🔥</div>
-                </div>
-                <div class="mt-6 space-y-3">
-                    <h3 class="text-xs font-bold text-gray-400 uppercase">Lưu ý đơn hàng</h3>
-                    <ul class="text-[12px] text-gray-500 space-y-2 list-disc pl-4 leading-relaxed">
-                        <li>Hệ thống chạy tự động 24/7.</li>
-                        <li>Kiểm tra kỹ link, không hoàn tiền nếu sai.</li>
-                        <li>Tốc độ: 1M - 10M / ngày.</li>
-                    </ul>
+                    <input type="number" class="w-full p-4 bg-white border border-gray-100 rounded-2xl outline-none" placeholder="1000">
+                    <span class="absolute right-4 top-3.5 bg-green-500 text-white text-[10px] px-2 py-1.5 rounded-lg font-bold uppercase shadow-sm">0 VND</span>
                 </div>
             </div>
         </div>
+
+        <button class="w-full bg-green-500 text-white font-bold py-5 rounded-2xl shadow-xl shadow-green-100 hover:bg-green-600 transition-all uppercase tracking-widest text-sm">
+            Đặt hàng ngay
+        </button>
+
     </div>
 
     <script>
-        // Hàm đóng mở menu
+        // Hàm đóng/mở dropdown
         function toggleDropdown(id) {
-            const menu = document.getElementById(id);
-            const isShowing = menu.classList.contains('show');
-            // Đóng tất cả menu khác trước
-            document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('show'));
-            if (!isShowing) menu.classList.add('show');
+            const menus = document.querySelectorAll('.dropdown-menu');
+            const target = document.getElementById(id);
+            
+            // Đóng các cái khác
+            menus.forEach(m => {
+                if(m.id !== id) m.classList.remove('show');
+            });
+            
+            // Bật/tắt cái đang nhấn
+            target.classList.toggle('show');
         }
 
-        // Hàm chọn item từ menu
-        function selectItem(type, name, icon, colorClass) {
-            const targetId = type === 'platform' ? 'platform-selected' : 'cat-selected';
-            const element = document.getElementById(targetId);
+        // Hàm xử lý chọn item
+        function selectItem(type, name, icon, color) {
+            if(type === 'platform') {
+                document.getElementById('selected-platform').innerHTML = `<i class="${icon} ${color}"></i> ${name}`;
+            } else if(type === 'category') {
+                document.getElementById('selected-category').innerText = name;
+            } else if(type === 'service') {
+                document.getElementById('selected-service').innerText = name;
+            }
             
-            // Cập nhật giao diện sau khi chọn
-            element.innerHTML = `<i class="${icon} ${colorClass}"></i> ${name}`;
-            
-            // Đóng menu
+            // Chọn xong thì đóng hết menu
             document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('show'));
         }
 
-        // Đóng menu khi nhấn ra ngoài
+        // Nhấn ra ngoài thì tự đóng menu
         window.onclick = function(event) {
             if (!event.target.closest('.relative')) {
                 document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('show'));
             }
         }
     </script>
-
 </body>
 </html>
