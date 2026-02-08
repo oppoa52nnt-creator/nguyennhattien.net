@@ -19,7 +19,7 @@
         <aside class="hidden lg:flex flex-col w-64 bg-white border-r sticky top-0 h-screen">
             <div class="p-6 flex items-center gap-3">
                 <div class="w-10 h-10 bg-blue-900 rounded-full flex items-center justify-center text-white font-bold text-xl">C</div>
-                <span class="font-bold text-gray-800">SUBSIEURE</span>
+                <span class="font-bold text-gray-800">TUONGTACTG</span>
             </div>
 
             <nav class="flex-1 px-4 space-y-1 overflow-y-auto">
@@ -38,9 +38,6 @@
                 <a href="#" class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all">
                     <i class="fa-solid fa-wallet w-5"></i> Nạp tiền
                 </a>
-                <a href="#" class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all">
-                    <i class="fa-solid fa-money-bill-transfer w-5"></i> Dòng tiền
-                </a>
             </nav>
 
             <div class="p-4 border-t flex items-center gap-3">
@@ -49,19 +46,17 @@
             </div>
         </aside>
 
-        <main class="flex-1 flex flex-col min-w-0 overflow-hidden">
+        <main class="flex-1 flex flex-col min-w-0">
             
             <header class="bg-white border-b h-16 flex items-center justify-between px-4 lg:px-8 sticky top-0 z-10">
                 <div class="flex items-center gap-4">
                     <button class="lg:hidden text-gray-500"><i class="fa-solid fa-bars text-xl"></i></button>
-                    <h1 class="hidden lg:block font-semibold text-gray-800">Đặt hàng</h1>
+                    <h1 class="font-semibold text-gray-800">Đặt hàng</h1>
                 </div>
                 
                 <div class="flex items-center gap-3">
-                    <div class="bg-green-500 text-white px-3 py-1 rounded-md font-bold text-sm shadow-sm">
-                        2,484 ₫
-                    </div>
-                    <div class="w-7 h-5 bg-red-600 rounded-sm flex items-center justify-center text-[10px] text-yellow-400">★</div>
+                    <div class="w-7 h-5 bg-red-600 rounded-sm flex items-center justify-center text-[10px] text-yellow-400 shadow-sm cursor-pointer">★</div>
+                    <i class="fa-solid fa-circle-user text-gray-400 text-xl lg:hidden"></i>
                 </div>
             </header>
 
@@ -69,10 +64,8 @@
                 
                 <div class="bg-green-50 border border-green-200 rounded-xl p-4 mb-6 text-sm">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
-                        <p class="text-red-500 font-medium italic">1. Zalo Hỗ Trợ: <span class="text-green-600 not-italic">0966181924</span></p>
-                        <p class="text-blue-600 font-medium italic">2. Telegram: <span class="text-green-600 not-italic">@ntienz8386</span></p>
-                        <p class="text-red-500 font-medium italic">3. Facebook: <span class="text-green-600 underline">https://www.facebook.com/ntien210</span></p>
-                        <p class="text-red-500 font-medium italic">4. Tiktok: <span class="text-green-600 underline">https://www.tiktok.com/@ntienz_14th10</span></p>
+                        <p class="text-red-500 font-medium italic">1. Zalo Hỗ Trợ: <span class="text-green-600 not-italic">037 8047 233</span></p>
+                        <p class="text-blue-600 font-medium italic">2. Telegram: <span class="text-green-600 not-italic">@vtgiang8386</span></p>
                     </div>
                 </div>
 
@@ -81,7 +74,7 @@
                         <div class="bg-white rounded-xl shadow-sm border p-6">
                             <div class="mb-5">
                                 <label class="block text-xs font-bold uppercase text-gray-400 mb-2">Tìm nhanh dịch vụ</label>
-                                <select class="w-full p-3 bg-gray-50 border border-gray-100 rounded-lg outline-none focus:border-green-400">
+                                <select class="w-full p-3 bg-gray-50 border border-gray-100 rounded-lg outline-none">
                                     <option>Vui lòng chọn</option>
                                 </select>
                             </div>
@@ -99,26 +92,21 @@
 
                             <div class="mb-5">
                                 <label class="block text-xs font-bold uppercase text-gray-400 mb-2">Dịch vụ</label>
-                                <select class="w-full p-3 bg-gray-50 border border-gray-100 rounded-lg outline-none"><option>🚀 6450 - TikTok Views | Max 1B - 86 VND</option></select>
+                                <select class="w-full p-3 bg-gray-50 border border-gray-100 rounded-lg outline-none"><option>🚀 6450 - TikTok Views | 86 VND</option></select>
                             </div>
 
                             <div class="bg-gray-50 p-4 rounded-xl border border-dashed border-gray-200">
-                                <div class="flex items-center gap-4 mb-4">
-                                    <label class="flex items-center gap-2 text-sm font-medium"><input type="radio" name="type" checked class="accent-green-500"> Một</label>
-                                    <label class="flex items-center gap-2 text-sm font-medium"><input type="radio" name="type" class="accent-green-500 text-gray-300"> Nhiều</label>
-                                </div>
                                 <label class="block text-sm font-semibold mb-2">Liên kết</label>
-                                <textarea class="w-full p-3 bg-white border rounded-lg h-20 outline-none focus:ring-1 focus:ring-green-400"></textarea>
+                                <textarea class="w-full p-3 bg-white border rounded-lg h-20 outline-none" placeholder="Dán link..."></textarea>
                                 
                                 <label class="block text-sm font-semibold mt-4 mb-2">Số lượng</label>
                                 <div class="relative">
                                     <input type="number" class="w-full p-3 bg-white border rounded-lg outline-none" placeholder="1000">
                                     <span class="absolute right-3 top-3 bg-green-500 text-white text-[10px] px-2 py-1 rounded-md font-bold">0 VND</span>
                                 </div>
-                                <p class="text-[10px] text-gray-400 mt-2">Tối thiểu: 1000 - Tối đa: 1000000000</p>
                             </div>
 
-                            <button class="w-full mt-6 bg-green-500 text-white font-bold py-4 rounded-xl shadow-lg hover:bg-green-600 transition-all uppercase">
+                            <button class="w-full mt-6 bg-green-500 text-white font-bold py-4 rounded-xl shadow-lg hover:bg-green-600 uppercase">
                                 Đặt hàng
                             </button>
                         </div>
@@ -127,20 +115,10 @@
                     <div class="space-y-6">
                         <div class="bg-white rounded-xl shadow-sm border p-6 text-center">
                             <h3 class="text-green-600 font-bold text-xl mb-1">6450</h3>
-                            <p class="text-sm font-semibold text-gray-700">TikTok Views | Max 1B | 1M/Ngày</p>
-                            <p class="text-2xl mt-2">🔥</p>
-                        </div>
-                        <div class="bg-white rounded-xl shadow-sm border p-4 text-xs text-gray-500 leading-relaxed">
-                            <p class="font-bold mb-2 text-gray-700">Lưu ý:</p>
-                            <ul class="list-disc pl-4 space-y-1">
-                                <li>Kiểm tra định dạng Link trước khi đặt.</li>
-                                <li>Dịch vụ chạy tự động 24/7.</li>
-                                <li>Không hoàn tiền nếu nhập sai Link.</li>
-                            </ul>
+                            <p class="text-sm font-semibold text-gray-700">TikTok Views | Max 1B</p>
                         </div>
                     </div>
                 </div>
-
             </div>
         </main>
     </div>
