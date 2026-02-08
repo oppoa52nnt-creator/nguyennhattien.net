@@ -18,29 +18,34 @@
 </style>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); min-height: 100vh; font-family: sans-serif; color: white; display: flex; justify-content: center; align-items: flex-start; padding: 40px 20px; }
-        .main-container { width: 100%; max-width: 450px; } 
-        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 12px 18px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; transition: 0.3s; font-size: 14px; }
-        .glass:hover { background: rgba(168, 85, 247, 0.1); transform: translateX(5px); }
-        .price { color: #facc15; font-weight: bold; font-size: 13px; }
-        details summary { list-style: none; cursor: pointer; background: rgba(168, 85, 247, 0.2); padding: 15px; border-radius: 12px; font-weight: bold; text-transform: uppercase; border: 1px solid rgba(168, 85, 247, 0.4); margin-top: 15px; display: flex; justify-content: space-between; align-items: center; transition: 0.3s; font-size: 13px; }
-        details summary:hover { background: rgba(168, 85, 247, 0.4); }
-        details[open] summary { border-bottom-left-radius: 0; border-bottom-right-radius: 0; background: #a855f7; }
-        .content { border: 1px solid rgba(168, 85, 247, 0.4); border-top: none; padding: 10px; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; background: rgba(255, 255, 255, 0.02); }
-        .sub-cat { font-size: 10px; color: #a855f7; font-weight: bold; margin: 15px 0 8px 8px; letter-spacing: 1px; }
-        .contact-group { display: flex; gap: 8px; margin-top: 15px; }
-        .btn-sm { flex: 1; py: 3; border-radius: 10px; font-weight: bold; font-size: 10px; text-align: center; display: flex; align-items: center; justify-content: center; gap: 3px; height: 40px; }
-    #notification { 
-    position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); 
-    background: #a855f7; color: white; padding: 12px 25px; border-radius: 50px; 
-    font-size: 13px; font-weight: bold; box-shadow: 0 4px 20px rgba(168, 85, 247, 0.4); 
-    z-index: 9999; display: none; animation: fadeInUp 0.3s ease; 
-    border: 1px solid rgba(255,255,255,0.3); text-align: center; width: 85%; max-width: 400px; 
+      body 
+    { background-color: #ffffff; /* Nền trắng tinh khôi */
+    color: #2d3436; /* Màu chữ xám đen để không bị mỏi mắt */
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
 }
-@keyframes fadeInUp { 
-    from { opacity: 0; transform: translate(-50%, 20px); } 
-    to { opacity: 1; transform: translate(-50%, 0); } 
-}</style>
+
+/* Tạo một cái khung nội dung chính ở giữa cho đẹp */
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 15px; /* Bo góc cho hiện đại */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05); /* Đổ bóng nhẹ để nổi bật trên nền trắng */
+}
+
+/* Nút bấm nổi bật cho SHOP NT */
+.btn-order {
+    background-color: #00b894; /* Màu xanh lá uy tín */
+    color: white;
+    padding: 12px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+}
 </head>
 <body>
     <div class="main-container">
