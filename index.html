@@ -2,68 +2,51 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title> Đặt Hàng</title>
+<title>Nhật Tiến | Đặt Hàng</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet"
- href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
 <style>
-.top-support-bar{
-  position: sticky;
-  top: 56px;
-  background:#e6f8f1;
-  border:2px solid #2ecc71;
-  padding:12px;
-  border-radius:6px;
-  font-size:14px;
-}
-.top-support-bar b{color:#c62828}
-.top-support-bar a{color:#1e88e5}
+.dropdown{display:none}
 </style>
-
 </head>
 
 <body class="bg-gray-100 min-h-screen">
-  <div class="top-support-bar">
-  <div><b>1.</b> Zalo hỗ trợ: <a href="#">0966181924</a></div>
-  <div><b>2.</b> Telegram: <a href="#">@ntienz8386</a></div>
-  <div>
-  <b>3.</b> Điều khoản tương tác:
-  <a href="dieukhoan.html" target="_blank">Xem</a>
-</div>
-  <div><b>4.</b> Nhóm Telegram: <a href="#">Tham gia</a></div>
-  <div><b>5.</b> Nhóm Zalo: <a href="#">Tham gia</a></div>
+
+<!-- ===== THANH THÔNG TIN TRÊN ===== -->
+<div class="bg-green-50 border border-green-400 p-3 text-sm space-y-1">
+ <div><b class="text-red-600">1.</b> Zalo hỗ trợ: <a class="text-blue-600" href="https://zalo.me/0966181924" target="_blank">0966181924</a></div>
+ <div><b class="text-red-600">2.</b> Telegram: <a class="text-blue-600" href="#">@ntienz8386</a></div>
+ <div><b class="text-red-600">3.</b> Điều khoản tương tác: <a class="text-blue-600" href="dieukhoan.html" target="_blank">Xem</a></div>
+ <div><b class="text-red-600">4.</b> Nhóm Telegram: <a class="text-blue-600" href="#">Tham gia</a></div>
+ <div><b class="text-red-600">5.</b> Nhóm Zalo: <a class="text-blue-600" href="#">Tham gia</a></div>
 </div>
 
-<!-- HEADER -->
+<!-- ===== HEADER ===== -->
 <div class="bg-white shadow p-4 flex items-center gap-3">
-  <button onclick="toggleMenu()" class="text-xl">
-    <i class="fa-solid fa-bars"></i>
-  </button>
-  <h1 class="font-bold text-lg">Nhật Tiến</h1>
+ <button onclick="toggleMenu()" class="text-xl"><i class="fa-solid fa-bars"></i></button>
+ <h1 class="font-bold text-lg">Nhật Tiến</h1>
 </div>
 
 <!-- MENU -->
-<div id="menu" class="hidden bg-white shadow p-4 space-y-3">
-  <div class="font-bold">📦 Đặt hàng</div>
-  <div>💰 Nạp tiền</div>
-  <div>💸 Kiếm tiền</div>
-  <div>🌐 Tạo web riêng</div>
+<div id="menu" class="hidden bg-white shadow p-4 space-y-2">
+ <div class="font-bold">📦 Đặt hàng</div>
+ <div>💰 Nạp tiền</div>
+ <div>💸 Kiếm tiền</div>
+ <div>🌐 Tạo web riêng</div>
 </div>
 
-<!-- FORM -->
+<!-- ===== FORM ===== -->
 <div class="max-w-md mx-auto bg-white mt-6 p-5 rounded-2xl shadow space-y-4">
 
 <!-- NỀN TẢNG -->
 <div class="relative">
 <label class="text-xs font-bold text-gray-500">NỀN TẢNG</label>
 <button onclick="toggle('platformList')" class="w-full p-4 bg-gray-50 rounded-xl flex justify-between items-center font-bold">
- <span id="platformText" class="flex gap-2 items-center">
-  <i class="fa-brands fa-tiktok"></i> TikTok
- </span>
+ <span id="platformText"><i class="fa-brands fa-tiktok"></i> TikTok</span>
  <i class="fa-solid fa-chevron-down text-xs"></i>
 </button>
-<div id="platformList" class="dropdown absolute w-full bg-white rounded-xl shadow mt-2 z-20"></div>
+<div id="platformList" class="dropdown absolute bg-white w-full shadow rounded mt-1 z-10"></div>
 </div>
 
 <!-- PHÂN LOẠI -->
@@ -73,7 +56,7 @@
  <span id="categoryText">Chọn phân loại</span>
  <i class="fa-solid fa-chevron-down text-xs"></i>
 </button>
-<div id="categoryList" class="dropdown absolute w-full bg-white rounded-xl shadow mt-2 z-20"></div>
+<div id="categoryList" class="dropdown absolute bg-white w-full shadow rounded mt-1 z-10"></div>
 </div>
 
 <!-- DỊCH VỤ -->
@@ -83,10 +66,10 @@
  <span id="serviceText">Chọn dịch vụ</span>
  <i class="fa-solid fa-chevron-down text-xs"></i>
 </button>
-<div id="serviceList" class="dropdown absolute w-full bg-white rounded-xl shadow mt-2 z-20"></div>
+<div id="serviceList" class="dropdown absolute bg-white w-full shadow rounded mt-1 z-10"></div>
 </div>
 
-<!-- LIÊN KẾT -->
+<!-- LINK -->
 <div>
 <label class="text-xs font-bold text-gray-500">LIÊN KẾT</label>
 <input id="link" class="w-full p-4 bg-gray-50 rounded-xl" placeholder="Dán link bài viết / video / profile">
@@ -95,7 +78,7 @@
 <!-- SỐ LƯỢNG -->
 <div>
 <label class="text-xs font-bold text-gray-500">SỐ LƯỢNG</label>
-<input id="qty" oninput="calcPrice()" class="w-full p-4 bg-gray-50 rounded-xl" placeholder="Tối thiểu 100">
+<input id="qty" type="number" min="100" oninput="calcPrice()" class="w-full p-4 bg-gray-50 rounded-xl" placeholder="Tối thiểu 100">
 </div>
 
 <!-- GIÁ -->
@@ -108,14 +91,19 @@
 
 </div>
 
-<!-- MODAL -->
+<!-- ===== MODAL ===== -->
 <div id="orderModal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50">
 <div class="bg-white p-5 rounded-xl w-[90%] max-w-md space-y-3">
- <h2 class="font-bold text-lg">📦 THÔNG TIN ĐƠN HÀNG</h2>
+ <h2 class="font-bold text-lg text-center">📦 THÔNG TIN ĐƠN HÀNG</h2>
 
  <img src="qrzalo.jpg" class="w-48 mx-auto">
 
- <textarea id="orderText" class="w-full p-3 bg-gray-100 rounded text-sm" rows="7"></textarea>
+ <p class="text-center text-red-600 font-bold text-sm">
+  Chuyển Khoản Đúng Số Tiền<br>
+  Chụp màn hình khi chuyển khoản thành công và coppy thông tin bên dưới gửi qua Zalo Admin để đăt hàng
+ </p>
+
+ <textarea id="orderText" class="w-full p-3 bg-gray-100 rounded text-sm" rows="8"></textarea>
 
  <button onclick="copyOrder()" class="w-full bg-green-600 text-white p-3 rounded font-bold">
   📋 Copy & Mở Zalo
@@ -138,15 +126,29 @@ const platforms={
 };
 
 let currentPlatform='tiktok';
-let currentPrice=0;
 let currentCategory='';
 let currentService='';
+let currentPrice=0;
+let opened=null;
 
-/* ===== UI ===== */
-function toggle(id){closeAll();document.getElementById(id).classList.toggle('show')}
-function closeAll(){document.querySelectorAll('.dropdown').forEach(d=>d.classList.remove('show'))}
+/* ===== DROPDOWN ===== */
+function toggle(id){
+ const el=document.getElementById(id);
+ if(opened===el){el.style.display='none';opened=null;return;}
+ closeAll();el.style.display='block';opened=el;
+}
+function closeAll(){
+ document.querySelectorAll('.dropdown').forEach(d=>d.style.display='none');
+ opened=null;
+}
+document.addEventListener('click',e=>{
+ if(!e.target.closest('.relative')) closeAll();
+});
+
+/* ===== MENU ===== */
 function toggleMenu(){menu.classList.toggle('hidden')}
 
+/* ===== RENDER ===== */
 const platformList=document.getElementById('platformList');
 const categoryList=document.getElementById('categoryList');
 const serviceList=document.getElementById('serviceList');
@@ -161,15 +163,16 @@ function renderPlatforms(){
 function selectPlatform(k){
  currentPlatform=k;
  platformText.innerHTML=`<i class="fa-brands ${platforms[k].icon}"></i> ${platforms[k].name}`;
- renderCategories();
- closeAll();
+ renderCategories();closeAll();
 }
 
 function renderCategories(){
+ categoryText.innerText='Chọn phân loại';
+ serviceText.innerText='Chọn dịch vụ';
+ serviceList.innerHTML='';
  categoryList.innerHTML=platforms[currentPlatform].categories.map((c,i)=>`
- <div onclick="selectCategory(${i})" class="p-3 hover:bg-gray-100 cursor-pointer font-bold">
- ${c.name}
- </div>`).join('');
+ <div onclick="selectCategory(${i})" class="p-3 hover:bg-gray-100 cursor-pointer font-bold">${c.name}</div>
+ `).join('');
 }
 
 function selectCategory(i){
@@ -178,50 +181,53 @@ function selectCategory(i){
  categoryText.innerText=c.name;
  serviceList.innerHTML=c.services.map(s=>`
  <div onclick="selectService('${s.name}',${s.price})" class="p-3 hover:bg-gray-100 cursor-pointer flex justify-between">
- <span>${s.name}</span>
- <span class="text-green-600 font-bold">${s.price} VND</span>
+  <span>${s.name}</span>
+  <span class="text-green-600 font-bold">${s.price} VND</span>
  </div>`).join('');
  closeAll();
 }
 
-function selectService(name,price){
- currentService=name;
- currentPrice=price;
- serviceText.innerText=name;
- closeAll();
- calcPrice();
+function selectService(n,p){
+ currentService=n;
+ currentPrice=p;
+ serviceText.innerText=n;
+ closeAll();calcPrice();
 }
 
+/* ===== PRICE ===== */
 function calcPrice(){
- const q=qty.value;
- if(q>0 && currentPrice){
-  priceBox.innerText=(Math.ceil(q/1000)*currentPrice).toLocaleString()+' VND';
+ if(qty.value>0 && currentPrice){
+  priceBox.innerText=(Math.ceil(qty.value/1000)*currentPrice).toLocaleString()+' VND';
   priceBox.classList.remove('hidden');
  }else priceBox.classList.add('hidden');
 }
 
 /* ===== ORDER ===== */
 function createOrder(){
- if(!currentService || !qty.value) return alert('Chưa đủ thông tin');
- const orderId='NT-'+Date.now();
- const total=priceBox.innerText;
+ if(!currentService || !qty.value || !link.value){
+  alert('Vui lòng nhập đủ thông tin');
+  return;
+ }
 
- orderText.value=
-`Mã đơn: ${orderId}
-Nền tảng: ${platforms[currentPlatform].name}
-Phân loại: ${currentCategory}
-Dịch vụ: ${currentService}
-Link: ${link.value}
-Số lượng: ${qty.value}
-Tổng tiền: ${total}
+ orderText.value =
+`📦 Mã đơn: NT-${Date.now()}
+📱 Nền tảng: TikTok
+📂 Phân loại: ${currentCategory}
+🛠️ Dịch vụ: ${currentService}
+🔗 Link: ${link.value}
+🔢 Số lượng: ${qty.value}
+💰 Tổng tiền: ${priceBox.innerText}
 
-Vui lòng chuyển khoản đúng số tiền và gửi bill cho Admin.`;
+📌 Trạng Thái:
+Đã chuyển khoản, nhờ Tiến kiểm tra bill giúp mình nhé.`;
 
  orderModal.classList.remove('hidden');
 }
 
 function copyOrder(){
- navigator.clipboard.writeText(orderText.value);
+ const t = document.getElementById('orderText');
+ t.select();
+ document.execCommand('copy');
  window.open('https://zalo.me/0966181924','_blank');
 }
 
@@ -229,9 +235,9 @@ function closeModal(){
  orderModal.classList.add('hidden');
 }
 
+
 /* INIT */
-renderPlatforms();
-renderCategories();
+renderPlatforms();renderCategories();
 </script>
 
 </body>
