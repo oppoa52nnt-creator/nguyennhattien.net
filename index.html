@@ -1,136 +1,238 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hệ thống Menu TikTok - TUONGTACTG</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-        body { background-color: #f8fafc; font-family: 'Inter', sans-serif; }
-        .dropdown-menu { display: none; position: absolute; width: 100%; z-index: 100; background: white; border: 1px solid #e2e8f0; border-radius: 12px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); margin-top: 5px; overflow-y: auto; max-height: 450px; }
-        .dropdown-menu.show { display: block; animation: slideDown 0.2s ease-out; }
-        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-        .dropdown-item { padding: 14px 16px; cursor: pointer; transition: all 0.2s; font-size: 14px; color: #475569; display: flex; items-center; gap: 10px; border-bottom: 1px solid #f8fafc; }
-        .dropdown-item:hover { background-color: #f0fdf4; color: #22c55e; font-weight: 500; }
-        .dropdown-item i { width: 20px; text-align: center; color: #64748b; }
-    </style>
+<meta charset="UTF-8">
+<title> Đặt Hàng</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet"
+ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+<style>
+.top-support-bar{
+  position: sticky;
+  top: 56px;
+  background:#e6f8f1;
+  border:2px solid #2ecc71;
+  padding:12px;
+  border-radius:6px;
+  font-size:14px;
+}
+.top-support-bar b{color:#c62828}
+.top-support-bar a{color:#1e88e5}
+</style>
+
 </head>
-<body class="p-4">
 
-    <div class="max-w-md mx-auto bg-white rounded-3xl shadow-sm border border-gray-100 p-6 space-y-6 mt-6">
-        
-        <div class="relative">
-            <label class="block text-[11px] font-bold text-gray-400 uppercase mb-2 ml-1">Nền tảng</label>
-            <button onclick="toggleDropdown('list-platform')" class="w-full flex items-center justify-between p-4 bg-gray-50 border border-gray-100 rounded-2xl text-sm hover:border-green-400 transition-all">
-                <div id="selected-platform" class="flex items-center gap-2 font-bold text-gray-700 uppercase">
-                    <i class="fa-brands fa-tiktok text-black text-lg"></i> TIKTOK
-                </div>
-                <i class="fa-solid fa-chevron-down text-gray-400 text-[10px]"></i>
-            </button>
-            <div id="list-platform" class="dropdown-menu">
-                <div class="dropdown-item" onclick="updatePlatform('TIKTOK', 'fa-brands fa-tiktok', 'text-black')">
-                    <i class="fa-brands fa-tiktok text-black"></i> <span class="font-bold text-green-600">TIKTOK</span>
-                </div>
-                <div class="dropdown-item" onclick="updatePlatform('FACEBOOK', 'fa-brands fa-facebook', 'text-blue-600')">
-                    <i class="fa-brands fa-facebook text-blue-600"></i> <span class="font-bold">FACEBOOK</span>
-                </div>
-            </div>
-        </div>
+<body class="bg-gray-100 min-h-screen">
+  <div class="top-support-bar">
+  <div><b>1.</b> Zalo hỗ trợ: <a href="#">0966181924</a></div>
+  <div><b>2.</b> Telegram: <a href="#">@ntienz8386</a></div>
+  <div>
+  <b>3.</b> Điều khoản tương tác:
+  <a href="dieukhoan.html" target="_blank">Xem</a>
+</div>
+  <div><b>4.</b> Nhóm Telegram: <a href="#">Tham gia</a></div>
+  <div><b>5.</b> Nhóm Zalo: <a href="#">Tham gia</a></div>
+</div>
 
-        <div class="relative">
-            <label class="block text-[11px] font-bold text-gray-400 uppercase mb-2 ml-1">Phân loại</label>
-            <button onclick="toggleDropdown('list-category')" class="w-full flex items-center justify-between p-4 bg-gray-50 border border-gray-100 rounded-2xl text-sm hover:border-green-400 transition-all">
-                <div id="selected-category" class="font-medium text-gray-700">
-                    Mắt Xem👁️
-                </div>
-                <i class="fa-solid fa-chevron-down text-gray-400 text-[10px]"></i>
-            </button>
-            <div id="list-category" class="dropdown-menu">
-                </div>
-        </div>
+<!-- HEADER -->
+<div class="bg-white shadow p-4 flex items-center gap-3">
+  <button onclick="toggleMenu()" class="text-xl">
+    <i class="fa-solid fa-bars"></i>
+  </button>
+  <h1 class="font-bold text-lg">Nhật Tiến</h1>
+</div>
 
-        <div class="relative">
-            <label class="block text-[11px] font-bold text-gray-400 uppercase mb-2 ml-1">Dịch vụ</label>
-            <button onclick="toggleDropdown('list-service')" class="w-full flex items-center justify-between p-4 bg-gray-50 border border-gray-100 rounded-2xl text-sm">
-                <div id="selected-service" class="text-gray-400 text-xs">Chọn dịch vụ cụ thể...</div>
-                <i class="fa-solid fa-chevron-down text-gray-400 text-[10px]"></i>
-            </button>
-            <div id="list-service" class="dropdown-menu">
-                <div class="dropdown-item">Vui lòng chọn phân loại trước</div>
-            </div>
-        </div>
+<!-- MENU -->
+<div id="menu" class="hidden bg-white shadow p-4 space-y-3">
+  <div class="font-bold">📦 Đặt hàng</div>
+  <div>💰 Nạp tiền</div>
+  <div>💸 Kiếm tiền</div>
+  <div>🌐 Tạo web riêng</div>
+</div>
 
-        <button class="w-full bg-green-500 text-white font-bold py-5 rounded-2xl shadow-xl shadow-green-100 hover:bg-green-600 transition-all uppercase tracking-widest text-sm">
-            Đặt hàng ngay
-        </button>
-    </div>
+<!-- FORM -->
+<div class="max-w-md mx-auto bg-white mt-6 p-5 rounded-2xl shadow space-y-4">
 
-    <script>
-        // Cập nhật danh sách đúng theo yêu cầu của bạn
-        const categoriesData = {
-            'TIKTOK': [
-                { name: 'Mắt Xem👁️', icon: 'fa-solid fa-eye' },
-                { name: 'Tim Tây❤️', icon: 'fa-solid fa-heart' },
-                { name: 'Tim Việt Nam💙', icon: 'fa-solid fa-heart' },
-                { name: 'Follow Tây👤', icon: 'fa-solid fa-user-plus' },
-                { name: 'Follow Việt Nam👤', icon: 'fa-solid fa-user-check' },
-                { name: 'Tăng Yêu Thích⚡', icon: 'fa-solid fa-bolt' },
-                { name: 'Tăng Chia Sẽ⚡', icon: 'fa-solid fa-share-nodes' },
-                { name: 'Bình Luận💭', icon: 'fa-solid fa-comment' },
-                { name: 'Tương Tác Bình Luận💭', icon: 'fa-solid fa-comments' },
-                { name: 'Đăng Lại Video', icon: 'fa-solid fa-retweet' },
-                { name: 'Mắt Livestreams Tây', icon: 'fa-solid fa-tower-broadcast' },
-                { name: 'Mắt Livestreams Việt Nam', icon: 'fa-solid fa-tower-broadcast' },
-                { name: 'Tương Tác Livestreams', icon: 'fa-solid fa-wand-magic-sparkles' }
-            ],
-            'FACEBOOK': [
-                { name: 'Like Bài Viết 👍', icon: 'fa-solid fa-thumbs-up' },
-                { name: 'Follow Trang Cá Nhân 👤', icon: 'fa-solid fa-users' }
-            ]
-        };
+<!-- NỀN TẢNG -->
+<div class="relative">
+<label class="text-xs font-bold text-gray-500">NỀN TẢNG</label>
+<button onclick="toggle('platformList')" class="w-full p-4 bg-gray-50 rounded-xl flex justify-between items-center font-bold">
+ <span id="platformText" class="flex gap-2 items-center">
+  <i class="fa-brands fa-tiktok"></i> TikTok
+ </span>
+ <i class="fa-solid fa-chevron-down text-xs"></i>
+</button>
+<div id="platformList" class="dropdown absolute w-full bg-white rounded-xl shadow mt-2 z-20"></div>
+</div>
 
-        function toggleDropdown(id) {
-            const menu = document.getElementById(id);
-            const isShow = menu.classList.contains('show');
-            document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('show'));
-            if (!isShow) menu.classList.add('show');
-        }
+<!-- PHÂN LOẠI -->
+<div class="relative">
+<label class="text-xs font-bold text-gray-500">PHÂN LOẠI</label>
+<button onclick="toggle('categoryList')" class="w-full p-4 bg-gray-50 rounded-xl flex justify-between items-center">
+ <span id="categoryText">Chọn phân loại</span>
+ <i class="fa-solid fa-chevron-down text-xs"></i>
+</button>
+<div id="categoryList" class="dropdown absolute w-full bg-white rounded-xl shadow mt-2 z-20"></div>
+</div>
 
-        function updatePlatform(name, icon, color) {
-            document.getElementById('selected-platform').innerHTML = `<i class="${icon} ${color}"></i> ${name}`;
-            renderCategories(name);
-            document.getElementById('selected-category').innerText = "-- Chọn phân loại --";
-            closeAll();
-        }
+<!-- DỊCH VỤ -->
+<div class="relative">
+<label class="text-xs font-bold text-gray-500">DỊCH VỤ</label>
+<button onclick="toggle('serviceList')" class="w-full p-4 bg-gray-50 rounded-xl flex justify-between items-center">
+ <span id="serviceText">Chọn dịch vụ</span>
+ <i class="fa-solid fa-chevron-down text-xs"></i>
+</button>
+<div id="serviceList" class="dropdown absolute w-full bg-white rounded-xl shadow mt-2 z-20"></div>
+</div>
 
-        function renderCategories(platformName) {
-            const catList = document.getElementById('list-category');
-            const items = categoriesData[platformName] || [];
-            
-            catList.innerHTML = items.map(item => `
-                <div class="dropdown-item" onclick="selectCategory('${item.name}')">
-                    <i class="${item.icon}"></i> ${item.name}
-                </div>
-            `).join('');
-        }
+<!-- LIÊN KẾT -->
+<div>
+<label class="text-xs font-bold text-gray-500">LIÊN KẾT</label>
+<input id="link" class="w-full p-4 bg-gray-50 rounded-xl" placeholder="Dán link bài viết / video / profile">
+</div>
 
-        function selectCategory(name) {
-            document.getElementById('selected-category').innerText = name;
-            closeAll();
-        }
+<!-- SỐ LƯỢNG -->
+<div>
+<label class="text-xs font-bold text-gray-500">SỐ LƯỢNG</label>
+<input id="qty" oninput="calcPrice()" class="w-full p-4 bg-gray-50 rounded-xl" placeholder="Tối thiểu 100">
+</div>
 
-        function closeAll() {
-            document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('show'));
-        }
+<!-- GIÁ -->
+<div id="priceBox" class="hidden bg-green-500 text-white text-center p-4 rounded-xl font-bold">0 VND</div>
 
-        // Khởi tạo danh sách TikTok ngay khi load trang
-        renderCategories('TIKTOK');
+<!-- ĐẶT HÀNG -->
+<button onclick="createOrder()" class="w-full bg-blue-600 text-white p-4 rounded-xl font-bold">
+ 🚀 ĐẶT HÀNG
+</button>
 
-        window.onclick = function(e) {
-            if (!e.target.closest('.relative')) closeAll();
-        }
-    </script>
+</div>
+
+<!-- MODAL -->
+<div id="orderModal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+<div class="bg-white p-5 rounded-xl w-[90%] max-w-md space-y-3">
+ <h2 class="font-bold text-lg">📦 THÔNG TIN ĐƠN HÀNG</h2>
+
+ <img src="qrzalo.jpg" class="w-48 mx-auto">
+
+ <textarea id="orderText" class="w-full p-3 bg-gray-100 rounded text-sm" rows="7"></textarea>
+
+ <button onclick="copyOrder()" class="w-full bg-green-600 text-white p-3 rounded font-bold">
+  📋 Copy & Mở Zalo
+ </button>
+
+ <button onclick="closeModal()" class="w-full bg-gray-300 p-2 rounded">
+  Đóng
+ </button>
+</div>
+</div>
+
+<script>
+/* ===== DATA ===== */
+const platforms={
+ tiktok:{name:'TikTok',icon:'fa-tiktok',categories:[
+  {name:'Mắt Xem👁️',services:[
+   {name:'TikTok Views | Max 1B | 1M/Ngày🔥',price:186}
+  ]}
+ ]}
+};
+
+let currentPlatform='tiktok';
+let currentPrice=0;
+let currentCategory='';
+let currentService='';
+
+/* ===== UI ===== */
+function toggle(id){closeAll();document.getElementById(id).classList.toggle('show')}
+function closeAll(){document.querySelectorAll('.dropdown').forEach(d=>d.classList.remove('show'))}
+function toggleMenu(){menu.classList.toggle('hidden')}
+
+const platformList=document.getElementById('platformList');
+const categoryList=document.getElementById('categoryList');
+const serviceList=document.getElementById('serviceList');
+
+function renderPlatforms(){
+ platformList.innerHTML=Object.keys(platforms).map(k=>`
+ <div onclick="selectPlatform('${k}')" class="p-3 hover:bg-gray-100 cursor-pointer font-bold">
+ <i class="fa-brands ${platforms[k].icon}"></i> ${platforms[k].name}
+ </div>`).join('');
+}
+
+function selectPlatform(k){
+ currentPlatform=k;
+ platformText.innerHTML=`<i class="fa-brands ${platforms[k].icon}"></i> ${platforms[k].name}`;
+ renderCategories();
+ closeAll();
+}
+
+function renderCategories(){
+ categoryList.innerHTML=platforms[currentPlatform].categories.map((c,i)=>`
+ <div onclick="selectCategory(${i})" class="p-3 hover:bg-gray-100 cursor-pointer font-bold">
+ ${c.name}
+ </div>`).join('');
+}
+
+function selectCategory(i){
+ const c=platforms[currentPlatform].categories[i];
+ currentCategory=c.name;
+ categoryText.innerText=c.name;
+ serviceList.innerHTML=c.services.map(s=>`
+ <div onclick="selectService('${s.name}',${s.price})" class="p-3 hover:bg-gray-100 cursor-pointer flex justify-between">
+ <span>${s.name}</span>
+ <span class="text-green-600 font-bold">${s.price} VND</span>
+ </div>`).join('');
+ closeAll();
+}
+
+function selectService(name,price){
+ currentService=name;
+ currentPrice=price;
+ serviceText.innerText=name;
+ closeAll();
+ calcPrice();
+}
+
+function calcPrice(){
+ const q=qty.value;
+ if(q>0 && currentPrice){
+  priceBox.innerText=(Math.ceil(q/1000)*currentPrice).toLocaleString()+' VND';
+  priceBox.classList.remove('hidden');
+ }else priceBox.classList.add('hidden');
+}
+
+/* ===== ORDER ===== */
+function createOrder(){
+ if(!currentService || !qty.value) return alert('Chưa đủ thông tin');
+ const orderId='NT-'+Date.now();
+ const total=priceBox.innerText;
+
+ orderText.value=
+`Mã đơn: ${orderId}
+Nền tảng: ${platforms[currentPlatform].name}
+Phân loại: ${currentCategory}
+Dịch vụ: ${currentService}
+Link: ${link.value}
+Số lượng: ${qty.value}
+Tổng tiền: ${total}
+
+Vui lòng chuyển khoản đúng số tiền và gửi bill cho Admin.`;
+
+ orderModal.classList.remove('hidden');
+}
+
+function copyOrder(){
+ navigator.clipboard.writeText(orderText.value);
+ window.open('https://zalo.me/0966181924','_blank');
+}
+
+function closeModal(){
+ orderModal.classList.add('hidden');
+}
+
+/* INIT */
+renderPlatforms();
+renderCategories();
+</script>
+
 </body>
 </html>
